@@ -19,9 +19,9 @@
     import { createToaster, melt } from '@melt-ui/svelte'
   </script>
    
-  <div use:portal>
+  <div use:portal class="absolute right-4 bottom-4 space-y-4">
     {#each $toasts as { id, data } (id)}
-      <div use:melt={$content(id)} class="bg-green-500 rounded-2xl w-64 h-32 absolute right-4 bottom-4 p-5">
+      <div use:melt={$content(id)} class="bg-green-500 rounded-2xl w-64 h-32 p-5">
         <div>
           <div>
             <h3 use:melt={$title(id)}>
