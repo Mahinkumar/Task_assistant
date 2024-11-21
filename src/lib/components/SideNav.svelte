@@ -16,4 +16,4 @@
         <Icon src={ArrowRightEndOnRectangle} class="size-8 stroke-black"></Icon>
     </button>
 </div>
-<div class="h-screen transition-all duration-1000  {!closed ? 'w-56' : 'w-16'}"></div>
+<div class="h-screen transition-all duration-700  {!closed ? 'w-56' : 'w-16'}"></div>
