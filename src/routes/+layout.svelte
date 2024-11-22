@@ -9,7 +9,7 @@
 <Toast/>
 <TopNav/>
 <div class='w-screen h-16'></div>
-<div class="flex h-screen w-screen">
+<div class="flex flex-grow">
 	<SideNav/>
 	{@render children()}
 </div>
