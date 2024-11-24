@@ -1,8 +1,8 @@
 
 
 > [!IMPORTANT]
-> ALPHA Release date: 1 DECEMBER 2025 <br>
-> BETA Release date: 1 JANUARY 2025 <br>
+> ALPHA Release date: 12 DECEMBER 2025 <br>
+> BETA Release date: 21 DECEMBER 2025 <br>
 > <br>
 > We are planning on a major rework of UI and Certain Mechanics. <br>
 
@@ -13,7 +13,7 @@
 <hr>
 
 # Task Assistant
-#### <a href="https://docs.mahinkumar.com/Task_assistant/guide">Guides</a> | <a href="https://docs.mahinkumar.com/Task_assistant/docs">Docs</a> | <a href="https://preview1.mahinkumar.com">Preview</a>
+#### <a href="/">Guides</a> | <a href="/">Docs</a> | <a href="https://taskassistant.mahinkumar.com">Preview</a>
 A Personal Task Assistant web application designed to improve productivity with automated Scheduling, Organization and Notes with support for optional AI assistance.<br>
 
 <hr/>
@@ -22,24 +22,12 @@ A Personal Task Assistant web application designed to improve productivity with 
 ### Running Development Server
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 Open https://localhost:5173 with your browser to see the result.
 
 ### Building the Application
 ```bash
 npm run build
-# or
-yarn build
-# or
-pnpm build
-# or
-bun build
 ```
 <hr>
 
