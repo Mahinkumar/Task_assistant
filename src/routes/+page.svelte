@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Check, EllipsisHorizontal, Icon } from 'svelte-hero-icons';
   import { writable } from 'svelte/store';
+  import autoAnimate from '@formkit/auto-animate';
 
   onMount(() => {
     const storedtodos = localStorage.getItem("todos");
@@ -42,7 +43,7 @@
 
 <div class="flex flex-col p-4 ">
   <h1 class="text-3xl mb-4">Todays Overview</h1>
-  <ul class="space-y-4">
+  <ul use:autoAnimate  class="space-y-4">
     {#each $todos as todo}
       <div class="text-black rounded-sm bg-gradient-to-br from-neutral-50 via-neutral-50 to-blue-400 flex lg:w-[26rem] w-80 h-20 items-center justify-between ring-blue-200/50 ring-2 p-4">
         <div>
