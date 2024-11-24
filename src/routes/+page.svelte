@@ -4,6 +4,8 @@
 	import { writable } from 'svelte/store';
 	import autoAnimate from '@formkit/auto-animate';
 
+
+
 	onMount(() => {
 		const storedtodos = localStorage.getItem('todos');
 		const todos = writable(storedtodos);
@@ -16,6 +18,8 @@
 	let StartTododate = '';
 	let EndTododate = '';
 	let newTodoText = '';
+
+  let Overview_mode = $state(false);
 	let todos = writable([
 		{ Task: 'Meet With Developers', completed: false, StartTime: '11:00', EndTime: '12:00' },
 		{ Task: 'Lunch at the Emporium', completed: false, StartTime: '13:00', EndTime: '14:00' },
@@ -45,7 +49,8 @@
 
 <div class="flex flex-grow">
 	<div class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-80">
-		<h1 class="text-2xl mb-2">Today's Overview</h1>
+		<h1 class="text-2xl mb-4">Today's Overview <button class="rounded-md ml-4 w-16 h-8 transition-all ring-2 ring-gray-200 { !Overview_mode ? 'bg-white':'bg-gray-200'}" onclick={()=>{Overview_mode = !Overview_mode}}>Ai</button></h1>
+    {#if ((!Overview_mode)&&($todos.length !== 0))}
 		<ul use:autoAnimate class="space-y-4">
 			{#each $todos as todo}
 				<div
@@ -67,10 +72,17 @@
 					</div>
 				</div>
 			{/each}
-			{#if $todos.length === 0}<div class="text-lg flex justify-center items-center h-72 border-2 border-green-200">
+      </ul>
+			{:else if (($todos.length === 0)&&(!Overview_mode))}<div class="text-lg flex justify-center items-center h-72 border-2 border-green-200">
 					You have completed all the <br /> tasks for the Day. Good Job!
-				</div>{/if}
-		</ul>
+			</div>
+      {:else}
+      <div class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100">
+        ✨ Today's schedule looks busy with three important tasks lined up: Meetings with developers from 11:00 AM to 12:00 PM, lunch at the Emporium from 1:00 PM to 2:00 PM, and exam preparation 
+        phase 1 scheduled for 3:00 PM to 4:00 PM.
+      </div>
+      {/if}
+		
 		<!--<form class="flex justify-center items-center mb-4 mt-4" onsubmit={addTodo}>
       <input type="text" class="px-4 py-2 rounded-md focus:outline-none mr-2 w-36" placeholder="Add +" bind:value={newTodoText} />
       <input type="time" class="form-input px-4 py-2 rounded-md focus:outline-none mr-2" bind:value={StartTododate} />
