@@ -50,8 +50,8 @@
           <h2 class="font-semibold lg:text-xl text-sm">{todo.Task}</h2>
         </div>
         <div class="flex justify-end space-x-4">
-          <button onclick={() => removeTodo(todo)} class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"><Icon src={Check} className="size-7 stroke-black" /></button>
-          <button class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"><Icon src={EllipsisHorizontal} className="size-7 stroke-black" /></button>
+          <button onclick={() => removeTodo(todo)} class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"><Icon src={Check} class="size-7 stroke-black" /></button>
+          <button class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"><Icon src={EllipsisHorizontal} class="size-7 stroke-black" /></button>
         </div>
       </div>
       
