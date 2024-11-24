@@ -48,13 +48,13 @@
 </script>
 
 <div class="flex flex-grow">
-	<div class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-80">
+	<div class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full">
 		<h1 class="text-2xl mb-4">Today's Overview <button class="rounded-md ml-4 w-16 h-8 transition-all ring-2 ring-gray-200 { !Overview_mode ? 'bg-white':'bg-gray-200'}" onclick={()=>{Overview_mode = !Overview_mode}}>Ai</button></h1>
     {#if ((!Overview_mode)&&($todos.length !== 0))}
 		<ul use:autoAnimate class="space-y-4">
 			{#each $todos as todo}
 				<div
-					class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] w-80 h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
+					class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
 				>
 					<div>
 						<p class="lg:text-xl text-sm">{todo.StartTime} - {todo.EndTime}</p>
