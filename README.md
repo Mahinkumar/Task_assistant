@@ -50,7 +50,6 @@ npm run build
 
 
 ## Architecture
-<img width="1472" alt="Archit" src="https://github.com/user-attachments/assets/40adaf6d-4601-4534-bc51-b0a100459b5f">
-
+<img width="1472" alt="Architecture" src="https://github.com/user-attachments/assets/f6c372ce-bcc3-4105-9637-b8608e3960e3">
 
 
