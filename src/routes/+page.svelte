@@ -85,13 +85,13 @@
 					{/each}
 				</ul>
 			{:else if $todos.length === 0 && !Overview_mode}<div
-					class="text-lg flex justify-center items-center h-72 border-2 border-green-200"
+					class="text-lg flex justify-center items-center h-72 border-2 border-green-200 lg:w-[26rem] w-full"
 				>
 					You have completed all the <br /> tasks for the Day. Good Job!
 				</div>
 			{:else}
 				<div
-					class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100"
+					class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100 lg:w-[26rem] w-full"
 				>
 					✨ Today's schedule looks busy with three important tasks lined up: Meetings with
 					developers from 11:00 AM to 12:00 PM, lunch at the Emporium from 1:00 PM to 2:00 PM, and
