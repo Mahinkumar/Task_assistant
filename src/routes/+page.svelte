@@ -45,65 +45,70 @@
 	}
 </script>
 
-<div class="flex grow">
-	<div class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full">
-		<h1 class="text-2xl mb-4">
-			Today's Overview <button
-				class="rounded-md ml-4 w-16 h-8 transition-all ring-2 ring-gray-200 {!Overview_mode
-					? 'bg-white'
-					: 'bg-gray-200'}"
-				onclick={() => {
-					Overview_mode = !Overview_mode;
-				}}>Ai</button
-			>
-		</h1>
-		{#if !Overview_mode && $todos.length !== 0}
-			<ul use:autoAnimate class="space-y-4">
-				{#each $todos as todo}
-					<div
-						class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
-					>
-						<div>
-							<p class="lg:text-xl text-sm">{todo.StartTime} - {todo.EndTime}</p>
-							<h2 class="font-semibold lg:text-xl text-sm">{todo.Task}</h2>
+<div class="flex flex-col grow">
+	<div class="flex grow max-h-96">
+		<div
+			class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full"
+		>
+			<h1 class="text-2xl mb-4">
+				Today's Overview <button
+					class="rounded-md ml-4 w-16 h-8 transition-all ring-2 ring-gray-200 {!Overview_mode
+						? 'bg-white'
+						: 'bg-gray-200'}"
+					onclick={() => {
+						Overview_mode = !Overview_mode;
+					}}>Ai</button
+				>
+			</h1>
+			{#if !Overview_mode && $todos.length !== 0}
+				<ul use:autoAnimate class="space-y-4">
+					{#each $todos as todo}
+						<div
+							class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
+						>
+							<div>
+								<p class="lg:text-xl text-sm">{todo.StartTime} - {todo.EndTime}</p>
+								<h2 class="font-semibold lg:text-xl text-sm">{todo.Task}</h2>
+							</div>
+							<div class="flex justify-end space-x-4">
+								<button
+									onclick={() => removeTodo(todo)}
+									class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"
+									><Icon src={Check} class="size-7 stroke-black" /></button
+								>
+								<button
+									class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"
+									><Icon src={EllipsisHorizontal} class="size-7 stroke-black" /></button
+								>
+							</div>
 						</div>
-						<div class="flex justify-end space-x-4">
-							<button
-								onclick={() => removeTodo(todo)}
-								class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"
-								><Icon src={Check} class="size-7 stroke-black" /></button
-							>
-							<button
-								class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"
-								><Icon src={EllipsisHorizontal} class="size-7 stroke-black" /></button
-							>
-						</div>
-					</div>
-				{/each}
-			</ul>
-		{:else if $todos.length === 0 && !Overview_mode}<div
-				class="text-lg flex justify-center items-center h-72 border-2 border-green-200"
-			>
-				You have completed all the <br /> tasks for the Day. Good Job!
-			</div>
-		{:else}
-			<div
-				class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100"
-			>
-				✨ Today's schedule looks busy with three important tasks lined up: Meetings with developers
-				from 11:00 AM to 12:00 PM, lunch at the Emporium from 1:00 PM to 2:00 PM, and exam
-				preparation phase 1 scheduled for 3:00 PM to 4:00 PM.
-			</div>
-		{/if}
+					{/each}
+				</ul>
+			{:else if $todos.length === 0 && !Overview_mode}<div
+					class="text-lg flex justify-center items-center h-72 border-2 border-green-200"
+				>
+					You have completed all the <br /> tasks for the Day. Good Job!
+				</div>
+			{:else}
+				<div
+					class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100"
+				>
+					✨ Today's schedule looks busy with three important tasks lined up: Meetings with
+					developers from 11:00 AM to 12:00 PM, lunch at the Emporium from 1:00 PM to 2:00 PM, and
+					exam preparation phase 1 scheduled for 3:00 PM to 4:00 PM.
+				</div>
+			{/if}
 
-		<!--<form class="flex justify-center items-center mb-4 mt-4" onsubmit={addTodo}>
+			<!--<form class="flex justify-center items-center mb-4 mt-4" onsubmit={addTodo}>
       <input type="text" class="px-4 py-2 rounded-md focus:outline-none mr-2 w-36" placeholder="Add +" bind:value={newTodoText} />
       <input type="time" class="form-input px-4 py-2 rounded-md focus:outline-none mr-2" bind:value={StartTododate} />
       <input type="time" class="form-input px-4 py-2 rounded-md focus:outline-none mr-2" bind:value={EndTododate} />
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">+</button>
     </form>-->
+		</div>
+		<div class="h-96 w-full bg-green-500">1</div>
 	</div>
-	<div class="h-96 w-full bg-green-500">
-		Hi
+	<div class="bg-violet-800 flex grow">
+		<div class="">2</div>
 	</div>
 </div>
