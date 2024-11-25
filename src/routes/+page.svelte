@@ -61,7 +61,7 @@
 				>
 			</h1>
 			{#if !Overview_mode && $todos.length !== 0}
-				<ul use:autoAnimate class="space-y-4">
+				<ul use:autoAnimate class="space-y-4 z-0">
 					{#each $todos as todo}
 						<div
 							class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"

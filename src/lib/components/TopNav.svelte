@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div class="bg-white fixed w-screen h-16 flex border-b-2 border-neutral-200">
+<div class="bg-white fixed w-screen h-16 flex border-b-2 border-neutral-200 z-20">
 	<div
 		class="lg:w-[15%] w-[70%] flex justify-start pl-5 items-center text-2xl font-semibold text-black"
 	>
