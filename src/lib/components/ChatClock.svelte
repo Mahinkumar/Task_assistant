@@ -11,6 +11,12 @@
     </div>
     <div class="flex w-full items-center justify-evenly h-full">
         <PomodoroClock/>
-        <div class="w-[50%] h-full"></div>
+        <div class="w-[50%] text-2xl h-full flex flex-col justify-center items-start space-y-16">
+            <div class="font-semibold text-4xl">Start the Timer whenever you are ready.</div>
+            <div>
+                <div class="flex"><h4 class="font-bold">Current Task: &nbsp; </h4> Meet With Developers</div>
+                <div class="flex"><h4 class="font-bold">Next Task: &nbsp; </h4> Break - 5 Minutes</div>
+            </div>
+        </div>
     </div>
 </div>

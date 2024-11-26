@@ -49,7 +49,7 @@
     ${isIdle ? 'animate-fadeOut bg-gray-300' : 'animate-tickIn bg-gray-500'} 
     transition-all`}
 	>
-		<span class="text-white text-4xl font-bold">
+		<span class="text-white text-6xl items-center justify-center flex font-bold font-serif">
 			{minutes < 10 ? '0' : ''}{minutes}:{seconds < 10 ? '0' : ''}{seconds}
 		</span>
 	</div>
