@@ -3,6 +3,8 @@
 	import { Check, EllipsisHorizontal, Icon } from 'svelte-hero-icons';
 	import { writable } from 'svelte/store';
 	import autoAnimate from '@formkit/auto-animate';
+	
+	import ChatClock from '$lib/components/ChatClock.svelte';
 
 	onMount(() => {
 		const storedtodos = localStorage.getItem('todos');
@@ -98,15 +100,9 @@
 					exam preparation phase 1 scheduled for 3:00 PM to 4:00 PM.
 				</div>
 			{/if}
-
-			<!--<form class="flex justify-center items-center mb-4 mt-4" onsubmit={addTodo}>
-      <input type="text" class="px-4 py-2 rounded-md focus:outline-none mr-2 w-36" placeholder="Add +" bind:value={newTodoText} />
-      <input type="time" class="form-input px-4 py-2 rounded-md focus:outline-none mr-2" bind:value={StartTododate} />
-      <input type="time" class="form-input px-4 py-2 rounded-md focus:outline-none mr-2" bind:value={EndTododate} />
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">+</button>
-    </form>-->
 		</div>
-		<div class="h-96 w-full bg-green-500">1</div>
+		<!--First Row with Assist UI-->
+		<ChatClock/>
 	</div>
 	<div class="bg-violet-800 flex grow">
 		<div class="">2</div>
