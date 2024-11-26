@@ -3,6 +3,7 @@
 	let mute = $state(false);
 
 	import { addToast } from '$lib/components/Toast.svelte';
+	import Datecomp from './Datecomp.svelte';
 
 	function create() {
 		addToast({
@@ -23,9 +24,9 @@
 	>
 		Task Assistant
 	</div>
-	<button class="lg:w-[15%] lg:flex hidden justify-center items-center text-xl text-black">
-		Random Date
-	</button>
+	<div class="lg:w-[15%] lg:flex hidden justify-center items-center text-xl text-black">
+		<Datecomp/>
+	</div>
 	<div class="lg:w-[40%] p-4 lg:flex hidden justify-center items-center">
 		<input
 			type="text"
