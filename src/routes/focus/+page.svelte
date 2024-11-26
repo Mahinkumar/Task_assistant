@@ -1,0 +1,1 @@
+<div class="text-2xl p-5">Focus Page</div>
