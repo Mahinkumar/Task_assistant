@@ -52,15 +52,22 @@
 		<div
 			class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full"
 		>
-			<h1 class="text-2xl mb-4">
-				Today's Overview <button
-					class="rounded-md ml-4 w-16 h-8 transition-all ring-2 ring-gray-200 {!Overview_mode
+			<h1 class="text-2xl mb-4 flex items-center">
+				Today's Overview <div class="ml-8 ring-2 ring-gray-200 w-36 h-10 items-center justify-evenly flex"><button
+					class="w-16 h-8 transition-all text-xl  {!Overview_mode
 						? 'bg-white'
-						: 'bg-gray-200'}"
+						: 'bg-gray-300'}"
 					onclick={() => {
 						Overview_mode = !Overview_mode;
 					}}>Ai</button
-				>
+				><button
+				class="w-16 h-8 transition-all text-xl {Overview_mode
+					? 'bg-white'
+					: 'bg-gray-300'}"
+				onclick={() => {
+					Overview_mode = !Overview_mode;
+				}}>Brief</button
+			></div>
 			</h1>
 			{#if !Overview_mode && $todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
@@ -93,11 +100,9 @@
 				</div>
 			{:else}
 				<div
-					class="text-xl flex justify-center items-center h-72 border-2 border-green-200 p-8 bg-gray-100 lg:w-[26rem] w-full"
+					class="text-2xl flex text-start justify-center items-center h-72 border-2 border-green-200 p-16 bg-gray-100 lg:w-[26rem] w-full"
 				>
-					✨ Today's schedule looks busy with three important tasks lined up: Meetings with
-					developers from 11:00 AM to 12:00 PM, lunch at the Emporium from 1:00 PM to 2:00 PM, and
-					exam preparation phase 1 scheduled for 3:00 PM to 4:00 PM.
+					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
 				</div>
 			{/if}
 		</div>
