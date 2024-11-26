@@ -1,18 +1,19 @@
 <script lang="ts">
-    import { Cog6Tooth, Icon, CalendarDays, Map, User, Bell, BellSlash } from "svelte-hero-icons";
+	import { Cog6Tooth, Icon, CalendarDays, Map, User, Bell, BellSlash } from 'svelte-hero-icons';
 	let mute = $state(false);
 
-	import { addToast } from '$lib/components/Toast.svelte'
+	import { addToast } from '$lib/components/Toast.svelte';
 
- 
 	function create() {
 		addToast({
-		data: {
-			title: 'Toggle State',
-			description: 'State Toggled',
-			color: 'green'
-		}
-		})
+			data: {
+				title: 'Notification Helper',
+				description: mute
+					? 'Muted Notifications Indefinitely. You will not recieve any alerts.'
+					: 'Unmuted All Notifications. You will Recieve alerts for all notifications now.',
+				color: 'green'
+			}
+		});
 	}
 </script>
 
@@ -42,7 +43,10 @@
 			><Icon src={CalendarDays} class="size-7 stroke-black" /></button
 		>
 		<button
-            onclick={()=>{mute = !mute; create()}}
+			onclick={() => {
+				mute = !mute;
+				create();
+			}}
 			class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-300 ring-2 lg:flex hidden justify-center items-center"
 			>{#if !mute}
 				<Icon src={Bell} class="size-7 stroke-black" />
