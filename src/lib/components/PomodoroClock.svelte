@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	let minutes = $state(25);
 	let seconds = $state(0);
+	let deg = $state(90); // Degree for the rotation
+	let deg_sec = $state(90);
 	let isWorking = $state(true);
 	let interval: any;
 	let isIdle = $state(false);
@@ -10,6 +12,9 @@
 	function startTimer() {
 		if (isStarted) return;
 		isStarted = true;
+		const totalTimeInSeconds = minutes * 60 + seconds;
+		const startTime = totalTimeInSeconds;
+
 		interval = setInterval(() => {
 			if (seconds === 0 && minutes === 0) {
 				clearInterval(interval);
@@ -25,6 +30,11 @@
 					seconds--;
 				}
 			}
+
+			// Calculate the remaining time in seconds and update the rotation angle
+			const remainingTimeInSeconds = minutes * 60 + seconds;
+			deg_sec = (90 + (seconds / 60) * 360) % 360;
+			deg = (90 + (remainingTimeInSeconds / startTime) * 360) % 360; // Rotate based on the percentage of time remaining
 		}, 1000);
 	}
 
@@ -35,6 +45,8 @@
 
 	function resetTimer() {
 		minutes = isWorking ? 25 : 5; // 25 min work, 5 min break
+		deg = 90;
+		deg_sec = 90;
 		seconds = 0;
 	}
 
@@ -47,8 +59,20 @@
 	<div
 		class={`flex justify-center items-center w-56 h-56 rounded-full 
     ${isIdle ? 'animate-fadeOut bg-gray-300' : 'animate-tickIn bg-gray-500'} 
-    transition-all`}
+    transition-all relative`}
 	>
+		<div
+			class="absolute w-full h-full rounded-full bg-black/5 text-start flex justify-start items-center text-white font-black"
+			style="transform: rotate({deg}deg); transition: transform 2s ease-out;"
+		>
+			##
+		</div>
+		<div
+			class="absolute w-full h-full rounded-full bg-black/5 text-start flex justify-start items-center text-green-400 font-black"
+			style="transform: rotate({deg_sec}deg); transition: transform 0.05s ease-out;"
+		>
+			===
+		</div>
 		<span class="text-white text-6xl items-center justify-center flex font-bold font-serif">
 			{minutes < 10 ? '0' : ''}{minutes}:{seconds < 10 ? '0' : ''}{seconds}
 		</span>
@@ -64,7 +88,7 @@
 		</button>
 		<button
 			onclick={pauseTimer}
-			class="px-4 py-2 bg-gray-200 text-blackrounded-lg hover:bg-gray-400 disabled:opacity-50"
+			class="px-4 py-2 bg-gray-200 text-black rounded-lg hover:bg-gray-400 disabled:opacity-50"
 			disabled={!isStarted}
 		>
 			Pause
