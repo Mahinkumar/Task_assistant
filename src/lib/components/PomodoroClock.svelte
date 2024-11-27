@@ -3,8 +3,8 @@
 	import { Icon, Minus } from 'svelte-hero-icons';
 	let minutes = $state(25);
 	let seconds = $state(0);
-	let deg = $state(90); // Degree for the rotation
-	let deg_sec = $state(90);
+	let deg = $state(270); // Degree for the rotation
+	let deg_sec = $state(270);
 	let isWorking = $state(true);
 	let interval: any;
 	let isIdle = $state(false);
@@ -37,8 +37,8 @@
 			console.log("Deg: ", deg ," | Deg_Sec: ",deg_sec)
 			// Calculate the remaining time in seconds and update the rotation angle
 			remainingTimeInSeconds = minutes * 60 + seconds;
-			deg_sec = (90+(seconds / 60) * 360) % 360;
-			deg = (90+(remainingTimeInSeconds / startTime) * 360) % 360; // Rotate based on the percentage of time remaining
+			deg_sec = (270+(seconds / 60) * 360) % 360;
+			deg = (270+(remainingTimeInSeconds / startTime) * 360) % 360; // Rotate based on the percentage of time remaining
 		}, 1000);
 	}
 
@@ -49,8 +49,8 @@
 
 	function resetTimer() {
 		minutes = isWorking ? 25 : 5; // 25 min work, 5 min break
-		deg = 90;
-		deg_sec = 90;
+		deg = 270;
+		deg_sec = 270;
 		seconds = 0;
 	}
 
@@ -73,13 +73,13 @@
 			
 		<div
 			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-white font-black rotate-90"
-			style="transform: rotate({deg}deg); transition: transform 2s ease-out;"
+			style="transform: rotate({-deg}deg); transition: transform 2s ease-out;"
 		>
 			<Icon src={Minus} class="size-8"/>
 		</div>
 		<div
 			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-green-400 font-black rotate-90"
-			style="transform: rotate({deg_sec}deg); transition: transform 0.05s ease-out;"
+			style="transform: rotate({-deg_sec}deg); transition: transform 0.05s ease-out;"
 		>
 			<Icon src={Minus} class="size-8"/>
 		</div>
