@@ -4,7 +4,7 @@
 	import { writable } from 'svelte/store';
 	import autoAnimate from '@formkit/auto-animate';
 	
-	import ChatClock from '$lib/components/ChatClock.svelte';
+	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
 
 	onMount(() => {
 		const storedtodos = localStorage.getItem('todos');

@@ -2,9 +2,10 @@
 	import { Cog6Tooth, Icon, CalendarDays, Map, User, Bell, BellSlash } from 'svelte-hero-icons';
 	let mute = $state(false);
 
-	import { addToast } from '$lib/components/Toast.svelte';
-	import Datecomp from './Datecomp.svelte';
+	import { addToast } from '$lib/components/features/Toast.svelte';
+	import Datecomp from '../dashboard/Datecomp.svelte';
 	import { goto } from '$app/navigation';
+	import HeadsUpDisplay from '../features/HeadsUpDisplay.svelte';
 
 	function create() {
 		addToast({
@@ -29,7 +30,7 @@
 		<Datecomp/>
 	</div>
 	<div class="lg:w-[40%] p-3 lg:flex hidden justify-center items-center">
-		<div class="bg-gray-300 w-full h-full flex justify-center items-center rounded-lg text-lg hud">/&nbsp;--Heads up Menu--&nbsp;/</div>
+		<HeadsUpDisplay/>
 	</div>
 	<div class="lg:w-[30%] w-[70%] flex justify-evenly items-center">
 		<button
