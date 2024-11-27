@@ -33,8 +33,6 @@
 			}
 			if (deg == 360) deg = 0;
 			if (deg_sec==360) deg_sec = 0; 
-
-			console.log("Deg: ", deg ," | Deg_Sec: ",deg_sec)
 			// Calculate the remaining time in seconds and update the rotation angle
 			remainingTimeInSeconds = minutes * 60 + seconds;
 			deg_sec = (270+(seconds / 60) * 360) % 360;
@@ -93,6 +91,7 @@
 			onclick={startTimer}
 			class="px-4 py-2 bg-gray-200 text-black rounded-lg hover:bg-gray-400 disabled:opacity-50"
 			disabled={isStarted}
+			aria-label="Start Timer"
 		>
 			Start
 		</button>
@@ -100,12 +99,14 @@
 			onclick={pauseTimer}
 			class="px-4 py-2 bg-gray-200 text-black rounded-lg hover:bg-gray-400 disabled:opacity-50"
 			disabled={!isStarted}
+			aria-label="Pause Timer"
 		>
 			Pause
 		</button>
 		<button
 			onclick={resetTimer}
 			class="px-4 py-2 bg-gray-200 text-black rounded-lg hover:bg-gray-400"
+			aria-label="Reset Timer"
 		>
 			Reset
 		</button>

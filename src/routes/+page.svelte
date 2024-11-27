@@ -57,6 +57,7 @@
 					class="w-16 h-8 transition-all text-xl  {!Overview_mode
 						? 'bg-white'
 						: 'bg-gray-300'}"
+						aria-label="AI overview"
 					onclick={() => {
 						Overview_mode = !Overview_mode;
 					}}>Ai</button
@@ -64,6 +65,7 @@
 				class="w-16 h-8 transition-all text-xl {Overview_mode
 					? 'bg-white'
 					: 'bg-gray-300'}"
+				aria-label="Brief"
 				onclick={() => {
 					Overview_mode = !Overview_mode;
 				}}>Brief</button
@@ -72,7 +74,7 @@
 			{#if !Overview_mode && $todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
 					{#each $todos as todo}
-						<div
+						<li
 							class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
 						>
 							<div>
@@ -82,15 +84,17 @@
 							<div class="flex justify-end space-x-4">
 								<button
 									onclick={() => removeTodo(todo)}
+									aria-label="Remove Item"
 									class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"
 									><Icon src={Check} class="size-7 stroke-black" /></button
 								>
 								<button
+									aria-label="Item Settings"
 									class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"
 									><Icon src={EllipsisHorizontal} class="size-7 stroke-black" /></button
 								>
 							</div>
-						</div>
+						</li>
 					{/each}
 				</ul>
 			{:else if $todos.length === 0 && !Overview_mode}<div
