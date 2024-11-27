@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ArrowLongLeft, ArrowUp, Bars2, Bars3, Icon, Minus } from 'svelte-hero-icons';
+	import { Icon, Minus } from 'svelte-hero-icons';
 	let minutes = $state(25);
 	let seconds = $state(0);
 	let deg = $state(90); // Degree for the rotation
@@ -9,7 +9,7 @@
 	let interval: any;
 	let isIdle = $state(false);
 	let isStarted = $state(false);
-
+	let remainingTimeInSeconds = $state(60) ;
 	function startTimer() {
 		if (isStarted) return;
 		isStarted = true;
@@ -31,11 +31,14 @@
 					seconds--;
 				}
 			}
+			if (deg == 360) deg = 0;
+			if (deg_sec==360) deg_sec = 0; 
 
+			console.log("Deg: ", deg ," | Deg_Sec: ",deg_sec)
 			// Calculate the remaining time in seconds and update the rotation angle
-			const remainingTimeInSeconds = minutes * 60 + seconds;
-			deg_sec = (90 + (seconds / 60) * 360) % 360;
-			deg = (90 + (remainingTimeInSeconds / startTime) * 360) % 360; // Rotate based on the percentage of time remaining
+			remainingTimeInSeconds = minutes * 60 + seconds;
+			deg_sec = (90+(seconds / 60) * 360) % 360;
+			deg = (90+(remainingTimeInSeconds / startTime) * 360) % 360; // Rotate based on the percentage of time remaining
 		}, 1000);
 	}
 
@@ -58,18 +61,24 @@
 
 <div class="flex flex-col justify-center items-center">
 	<div
-		class={`flex justify-center items-center w-56 h-56 rounded-full 
+		class={`z-2 flex justify-center items-center w-56 h-56 rounded-full 
     ${isIdle ? 'animate-fadeOut bg-gray-300' : 'animate-tickIn bg-gray-500'} 
     transition-all relative`}
-	>
+	>	
+		<!---->
 		<div
-			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-white font-black"
+			class="absolute w-[70%] h-[70%] bg-white/5 {remainingTimeInSeconds < 60 ? 'animate-ping':''} rounded-full text-start flex justify-start items-center text-white font-black"
+		>
+		</div>
+			
+		<div
+			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-white font-black rotate-90"
 			style="transform: rotate({deg}deg); transition: transform 2s ease-out;"
 		>
 			<Icon src={Minus} class="size-8"/>
 		</div>
 		<div
-			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-green-400 font-black"
+			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-green-400 font-black rotate-90"
 			style="transform: rotate({deg_sec}deg); transition: transform 0.05s ease-out;"
 		>
 			<Icon src={Minus} class="size-8"/>
