@@ -4,6 +4,7 @@
 
 	import { addToast } from '$lib/components/Toast.svelte';
 	import Datecomp from './Datecomp.svelte';
+	import { goto } from '$app/navigation';
 
 	function create() {
 		addToast({
@@ -33,10 +34,12 @@
 	<div class="lg:w-[30%] w-[70%] flex justify-evenly items-center">
 		<button
 			class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-300 ring-2 flex justify-center items-center"
+			onclick={()=>goto("/settings")}
 			><Icon src={Cog6Tooth} class="size-7 stroke-black" /></button
 		>
 		<button
 			class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-300 ring-2 flex justify-center items-center"
+			onclick={()=>goto("/calendar")}
 			><Icon src={CalendarDays} class="size-7 stroke-black" /></button
 		>
 		<button
@@ -52,12 +55,14 @@
 		>
 		<button
 			class="hover:bg-gray-100 rounded-sm w-36 h-10 ring-neutral-300 ring-2 lg:flex hidden justify-evenly items-center"
+			onclick={()=>goto("/timeline")}
 		>
 			<h2 class="text-xl text-black">Timeline</h2>
 			<Icon src={Map} class="size-7 stroke-black" />
 		</button>
 		<button
 			class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-300 ring-2 flex justify-center items-center"
+			onclick={()=>goto("/user")}
 			><Icon src={User} class="size-7 stroke-black" /></button
 		>
 	</div>
