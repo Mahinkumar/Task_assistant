@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { ArrowLongLeft, ArrowUp, Bars2, Bars3, Icon, Minus } from 'svelte-hero-icons';
 	let minutes = $state(25);
 	let seconds = $state(0);
 	let deg = $state(90); // Degree for the rotation
@@ -62,16 +63,16 @@
     transition-all relative`}
 	>
 		<div
-			class="absolute w-full h-full rounded-full bg-black/5 text-start flex justify-start items-center text-white font-black"
+			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-white font-black"
 			style="transform: rotate({deg}deg); transition: transform 2s ease-out;"
 		>
-			##
+			<Icon src={Minus} class="size-8"/>
 		</div>
 		<div
-			class="absolute w-full h-full rounded-full bg-black/5 text-start flex justify-start items-center text-green-400 font-black"
+			class="absolute w-full h-full rounded-full text-start flex justify-start items-center text-green-400 font-black"
 			style="transform: rotate({deg_sec}deg); transition: transform 0.05s ease-out;"
 		>
-			===
+			<Icon src={Minus} class="size-8"/>
 		</div>
 		<span class="text-white text-6xl items-center justify-center flex font-bold font-serif">
 			{minutes < 10 ? '0' : ''}{minutes}:{seconds < 10 ? '0' : ''}{seconds}
