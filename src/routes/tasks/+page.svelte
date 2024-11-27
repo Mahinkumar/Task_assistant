@@ -1,1 +1,1 @@
-<div class="text-2xl p-5">  Tasks Page</div>
+<div class="text-2xl p-5">Tasks Page</div>
