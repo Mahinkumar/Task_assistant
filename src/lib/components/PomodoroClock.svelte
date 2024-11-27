@@ -83,7 +83,7 @@
 		>
 			<Icon src={Minus} class="size-8"/>
 		</div>
-		<span class="text-white text-6xl items-center justify-center flex font-bold font-serif">
+		<span class="text-white text-5xl items-center justify-center flex font-bold font-serif">
 			{minutes < 10 ? '0' : ''}{minutes}:{seconds < 10 ? '0' : ''}{seconds}
 		</span>
 	</div>
