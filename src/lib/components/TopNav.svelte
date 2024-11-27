@@ -27,12 +27,8 @@
 	<div class="lg:w-[15%] lg:flex hidden justify-center items-center text-xl text-black">
 		<Datecomp/>
 	</div>
-	<div class="lg:w-[40%] p-4 lg:flex hidden justify-center items-center">
-		<input
-			type="text"
-			class="rounded-sm w-full h-10 ring-neutral-300 ring-2 pl-4 pr-4 text-lg text-black"
-			placeholder=" 🔍  Search for anything "
-		/>
+	<div class="lg:w-[40%] p-3 lg:flex hidden justify-center items-center">
+		<div class="bg-gray-300 w-full h-full flex justify-center items-center rounded-lg text-lg">/&nbsp;--Heads up Menu--&nbsp;/</div>
 	</div>
 	<div class="lg:w-[30%] w-[70%] flex justify-evenly items-center">
 		<button
