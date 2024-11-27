@@ -29,7 +29,7 @@
 		<Datecomp/>
 	</div>
 	<div class="lg:w-[40%] p-3 lg:flex hidden justify-center items-center">
-		<div class="bg-gray-300 w-full h-full flex justify-center items-center rounded-lg text-lg">/&nbsp;--Heads up Menu--&nbsp;/</div>
+		<div class="bg-gray-300 w-full h-full flex justify-center items-center rounded-lg text-lg hud">/&nbsp;--Heads up Menu--&nbsp;/</div>
 	</div>
 	<div class="lg:w-[30%] w-[70%] flex justify-evenly items-center">
 		<button
