@@ -3,61 +3,24 @@
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 	import DOMPurify from 'dompurify';
+	import Notestoolbar from '$lib/components/Notestoolbar.svelte';
 	let markdown = $state('');
 	let val = $state('');
 	let Button = $state(0);
 	$effect(() => (val = DOMPurify.sanitize(marked(markdown))));
 </script>
 
-<div class="flex flex-col w-full h-full">
-	<div class="ml-1 ring-2 ring-gray-200 h-16 w-full items-center justify-evenly flex">
-		<button
-			class="w-48 h-12 transition-all text-xl {!(Button == 'Workflow')
-				? 'bg-white'
-				: 'bg-gray-300'}"
-			onclick={() => {
-				Button = 'Workflow';
-			}}>Bold</button
-		><button
-			class="w-48 h-12 transition-all text-xl {!(Button == 'Statistics')
-				? 'bg-white'
-				: 'bg-gray-300'}"
-			onclick={() => {
-				Button = 'Statistics';
-			}}>Code</button
-		><button
-			class="w-48 h-12 transition-all text-xl {!(Button == '3')
-				? 'bg-white'
-				: 'bg-gray-300'}"
-			onclick={() => {
-				Button = '3';
-			}}>Table</button
-		><button
-			class="w-48 h-12 transition-all text-xl {!(Button == '4')
-				? 'bg-white'
-				: 'bg-gray-300'}"
-			onclick={() => {
-				Button = '4';
-			}}>Ice Cream</button
-		><button
-			class="w-48 h-12 transition-all text-xl {!(Button == '5')
-				? 'bg-white'
-				: 'bg-gray-300'}"
-			onclick={() => {
-				Button = '5';
-			}}>Not Ice Cream</button
-		>
-	</div>
-	<div class="flex flex-grow m-5 h-screen">
+<div class="flex flex-col w-full h-full pl-2 pr-2 ml-3 mr-3">
+	<Notestoolbar/>
+	<div class="flex justify-stretch h-screen">
 		<textarea
-			class="w-1/2 p-5 h-full border-0"
+			class="p-5 w-[50%] h-full border-2 border-gray-400 focus:border-violet-100"
 			bind:value={markdown}
-			placeholder="Enter markdown here"
+			placeholder="Enter your notes here. Markdown is supported !"
 		></textarea>
-		<div class="prose p-5 h-full">{@html val}</div>
+		<div class="w-[50%] p-5 h-full border-2 border-l-0 border-gray-400 ">
+			<div class="prose max-w-fit">{@html val}</div>
+		</div>
 	</div>
 </div>
 
-<!-- Convert the markdown to HTML and display it -->
-
-<!-- Make it look (slightly) nicer ;) -->
