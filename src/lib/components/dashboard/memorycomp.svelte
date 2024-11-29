@@ -11,7 +11,7 @@
 		? ''
 		: 'rotate-y-180 rotate-x-180'}"
 	onclick={() => (is_flipped = !is_flipped)}
-    aria-label={data.name + data.details}
+    aria-label={data.name + " : " + data.details}
 >
 	{#if is_flipped}
 		<div in:fade={{duration:1000}} out:fade={{duration:100}} class="font-bold text-xl mb-2">{data.name}</div>
