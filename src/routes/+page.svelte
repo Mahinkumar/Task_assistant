@@ -19,6 +19,21 @@
 	let EndTododate = '';
 	let newTodoText = '';
 
+	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
+	import Flipcard from '$lib/components/dashboard/flipcard.svelte';
+
+	let notes = [
+	{ name: 'Buy Groceries', details: 'Milk, eggs, bread, etc.', date: '2024-11-29' },
+	{ name: 'Meeting with Bob', details: 'Discuss project deadlines', date: '2024-11-30' },
+	{ name: 'Doctor Appointment', details: 'Annual checkup', date: '2024-12-01' }
+	];
+
+	let flipCards = [
+    { name: 'Design Review', details: 'Review project designs for next phase.', date: '2024-12-02' },
+    { name: 'Team Meeting', details: 'Discuss sprint goals and tasks for TaskAssistant.', date: '2024-12-03' },
+    { name: 'Code Review', details: 'Review pull requests for upcoming release.', date: '2024-12-04' }
+  ];
+
 	let Overview_mode = $state(false);
 	let todos = writable([
 		{ Task: 'Meet With Developers', completed: false, StartTime: '11:00', EndTime: '12:00' },
@@ -113,7 +128,18 @@
 		<!--First Row with Assist UI-->
 		<ChatClock/>
 	</div>
-	<div class="bg-violet-800 flex grow">
-		<div class="">2</div>
+	<div class="bg-violet-100 flex flex-col grow h-screen p-5">
+		<div class="text-2xl">Notes and Memories Board</div>
+		<div class="flex flex-wrap justify-start p-2">
+			{#each notes as note}
+				<NotesMini name={note.name} details={note.details} date={note.date} />
+			{/each}
+		</div>
+		<div class="flex flex-wrap justify-start p-2">
+			{#each flipCards as flipCard}
+				<Flipcard name={flipCard.name} details={flipCard.details} date={flipCard.date} />
+			{/each}
+		</div>
 	</div>
+	
 </div>

@@ -17,6 +17,7 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@xpd/tailwind-3dtransforms": "^1.0.3",
 		"autoprefixer": "^10.4.20",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
