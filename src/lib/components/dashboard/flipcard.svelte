@@ -1,6 +1,6 @@
 <script lang="ts">
 	let data = $props();
-	let is_flipped = $state(false);
+	let is_flipped = $state(true);
 
 	import { CloudLightning, Zap } from 'lucide-svelte';
     import {fade} from 'svelte/transition'
