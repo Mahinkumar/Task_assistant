@@ -3,7 +3,7 @@
 	import { Check, EllipsisHorizontal, Icon } from 'svelte-hero-icons';
 	import { writable } from 'svelte/store';
 	import autoAnimate from '@formkit/auto-animate';
-	
+
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
 
 	onMount(() => {
@@ -21,18 +21,54 @@
 
 	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
 	import Flipcard from '$lib/components/dashboard/flipcard.svelte';
+	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 
 	let notes = [
-	{ name: 'Buy Groceries', details: 'Milk, eggs, bread, etc.', date: '2024-11-29' },
-	{ name: 'Meeting with Bob', details: 'Discuss project deadlines', date: '2024-11-30' },
-	{ name: 'Doctor Appointment', details: 'Annual checkup', date: '2024-12-01' }
+		{ name: 'Buy Groceries', details: 'Milk, eggs, bread, etc.', date: '2024-11-29' },
+		{ name: 'Meeting with Bob', details: 'Discuss project deadlines', date: '2024-11-30' },
+		{ name: 'Doctor Appointment', details: 'Annual checkup', date: '2024-12-01' },
+		{
+			name: 'Call Someone',
+			details: 'Catch up with Someone about the meet.',
+			date: '2024-12-02'
+		},
+		{
+			name: 'Prepare Presentation',
+			details: "Finish slides for Monday's presentation on Q4 performance.",
+			date: '2024-12-03'
+		},
+		{
+			name: 'Buy Flight Tickets',
+			details: 'Book flight for the business trip next week.',
+			date: '2024-12-04'
+		}
 	];
 
 	let flipCards = [
-    { name: 'Design Review', details: 'Review project designs for next phase.', date: '2024-12-02' },
-    { name: 'Team Meeting', details: 'Discuss sprint goals and tasks for TaskAssistant.', date: '2024-12-03' },
-    { name: 'Code Review', details: 'Review pull requests for upcoming release.', date: '2024-12-04' }
-  ];
+		{
+			name: 'Design Review',
+			details: 'Review project designs for next phase.',
+			date: '2024-12-02'
+		},
+		{
+			name: 'Team Meeting',
+			details: 'Discuss sprint goals and tasks for TaskAssistant.',
+			date: '2024-12-03'
+		},
+		{
+			name: 'Code Review',
+			details: 'Review pull requests for upcoming release.',
+			date: '2024-12-04'
+		}
+	];
+
+	let memcards = [
+		{
+			name: 'The Project Idea',
+			details: 'An Open source Task Assistant',
+			date: '2024-12-02'
+		},
+	];
 
 	let Overview_mode = $state(false);
 	let todos = writable([
@@ -68,23 +104,23 @@
 			class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full"
 		>
 			<h1 class="text-2xl mb-4 flex items-center">
-				Today's Overview <div class="ml-8 ring-2 ring-gray-200 w-36 h-10 items-center justify-evenly flex"><button
-					class="w-16 h-8 transition-all text-xl  {!Overview_mode
-						? 'bg-white'
-						: 'bg-gray-300'}"
+				Today's Overview <div
+					class="ml-8 ring-2 ring-gray-200 w-36 h-10 items-center justify-evenly flex"
+				>
+					<button
+						class="w-16 h-8 transition-all text-xl {!Overview_mode ? 'bg-white' : 'bg-gray-300'}"
 						aria-label="AI overview"
-					onclick={() => {
-						Overview_mode = !Overview_mode;
-					}}>Ai</button
-				><button
-				class="w-16 h-8 transition-all text-xl {Overview_mode
-					? 'bg-white'
-					: 'bg-gray-300'}"
-				aria-label="Brief"
-				onclick={() => {
-					Overview_mode = !Overview_mode;
-				}}>Brief</button
-			></div>
+						onclick={() => {
+							Overview_mode = !Overview_mode;
+						}}>Ai</button
+					><button
+						class="w-16 h-8 transition-all text-xl {Overview_mode ? 'bg-white' : 'bg-gray-300'}"
+						aria-label="Brief"
+						onclick={() => {
+							Overview_mode = !Overview_mode;
+						}}>Brief</button
+					>
+				</div>
 			</h1>
 			{#if !Overview_mode && $todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
@@ -126,20 +162,20 @@
 			{/if}
 		</div>
 		<!--First Row with Assist UI-->
-		<ChatClock/>
+		<ChatClock />
 	</div>
 	<div class="bg-violet-100 flex flex-col grow h-screen p-5">
 		<div class="text-2xl">Notes and Memories Board</div>
-		<div class="flex flex-wrap justify-start p-2">
+		<div class="grid lg:grid-cols-5 md:lg:grid-cols-4 justify-start p-2">
 			{#each notes as note}
 				<NotesMini name={note.name} details={note.details} date={note.date} />
 			{/each}
-		</div>
-		<div class="flex flex-wrap justify-start p-2">
 			{#each flipCards as flipCard}
 				<Flipcard name={flipCard.name} details={flipCard.details} date={flipCard.date} />
 			{/each}
+			{#each memcards as memcard}
+				<Memorycomp name={memcard.name} details={memcard.details} date={memcard.date} />
+			{/each}
 		</div>
 	</div>
-	
 </div>
