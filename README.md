@@ -19,16 +19,35 @@ A Personal Task Assistant web application designed to improve productivity with 
 <hr/>
 
 ## Getting Started
+
+1. Update the postgres url environment variable in .env file.
+2. Use the default from example.env if you are using docker compose for pg database
+
+```bash
+npm run db:start #To Start a docker postgres server
+npm run db:push #To update your database
+
+#Optional commands
+npx drizzle-kit generate #Generate a migration script
+npm run db: migrate #To migrate using migration script
+```
+
 ### Running Development Server
+
+### Building the Application
 ```bash
 npm run dev
 ```
+
 Open https://localhost:5173 with your browser to see the result.
 
 ### Building the Application
 ```bash
 npm run build
+npm run preview #view build preview
 ```
+
+Open https://localhost:4173 with your browser to see the build preview.
 <hr>
 
 ## Features
@@ -39,14 +58,13 @@ npm run build
 5. Completely Private on device Data Management. 
 6. Long Notes and Memories to keep task with their related information.
 7. Integration with third party calendars (Needs API)
+8. Note taking with markdown support
+9. Optional Ambient noises
 
 ## Requirements
-* CPU: 1.5 GHz or faster
-* RAM: 4 GB or more
-* Storage: 512 MB or more (dependent on data storage needs)
-* Operating System: Windows, macOS, or Linux
+* A device that can run a browser
 * Node.js version: 16.x or higher
-* Package Manager: npm, yarn, pnpm, or bun
+* NPM (Node package manager)
 
 
 ## Architecture
