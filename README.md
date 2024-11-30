@@ -32,9 +32,8 @@ npx drizzle-kit generate #Generate a migration script
 npm run db: migrate #To migrate using migration script
 ```
 
-### Running Development Server
 
-### Building the Application
+### Running Development Server
 ```bash
 npm run dev
 ```
