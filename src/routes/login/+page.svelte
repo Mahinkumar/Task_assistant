@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
-
+	import '../app.css';
 	let { form }: { form: ActionData } = $props();
 </script>
 
