@@ -47,29 +47,27 @@
 		<Datecomp />
 		<button use:melt={$trigger}>
 			{#if !prop.sync}
-			<CloudOff class="mr-4 ml-4" />
+				<CloudOff class="mr-4 ml-4" />
 			{/if}
 			{#if prop.sync}
 				<CloudUpload class="mr-4 ml-4" />
 			{/if}
 		</button>
 		{#if $open}
-		<div
-			use:melt={$content}
-			transition:fade={{ duration: 100 }}
-			class=" z-30 rounded-lg bg-white shadow"
-		>
-			<div use:melt={$arrow}></div>
-			{#if !prop.sync}
-			<p class="px-4 py-1 border-2 border-gray-200">Not Syncing, Login to sync</p>
-			{/if}
-			{#if prop.sync}
-			<p class="px-4 py-1 border-2 border-gray-200">Syncing to cloud</p>
-			{/if}
-			
-		</div>
-{/if}
-		
+			<div
+				use:melt={$content}
+				transition:fade={{ duration: 100 }}
+				class=" z-30 rounded-lg bg-white shadow"
+			>
+				<div use:melt={$arrow}></div>
+				{#if !prop.sync}
+					<p class="px-4 py-1 border-2 border-gray-200">Not Syncing, Login to sync</p>
+				{/if}
+				{#if prop.sync}
+					<p class="px-4 py-1 border-2 border-gray-200">Syncing to cloud</p>
+				{/if}
+			</div>
+		{/if}
 	</div>
 	<div class="lg:w-[40%] p-3 lg:flex hidden justify-center items-center">
 		<HeadsUpDisplay />
