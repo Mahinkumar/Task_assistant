@@ -3,11 +3,11 @@
 	import TopNav from '$lib/components/nav/TopNav.svelte';
 	import SideNav from '$lib/components/nav/SideNav.svelte';
 	import Toast from '$lib/components/features/Toast.svelte'
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <Toast/>
-<TopNav/>
+<TopNav sync={data.sync}/>
 <div class='w-screen h-16'></div>
 <div class="flex flex-grow">
 	<SideNav/>

@@ -29,6 +29,8 @@
 		const hm = `${hours}:${minutes}`;
 		return(hm)
 	}
+
+	let sync = data.sync;
 	
 </script>
 
