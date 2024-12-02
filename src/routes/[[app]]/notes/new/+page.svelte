@@ -3,7 +3,7 @@
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 	import DOMPurify from 'dompurify';
-	import Notestoolbar from '$lib/components/Notestoolbar.svelte';
+	import Notestoolbar from '$lib/components/features/Notestoolbar.svelte';
 	let markdown = $state('');
 	let val = $state('');
 	let Button = $state(0);

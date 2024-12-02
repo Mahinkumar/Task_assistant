@@ -11,6 +11,7 @@
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 
 	import type { PageData } from './$types';
+	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -24,22 +25,20 @@
 	let Overview_mode = $state(false);
 
 	// Date parsing function for all items
-	function datemap(date: any){
-		const date_item = new Date(date)
+	function datemap(date: any) {
+		const date_item = new Date(date);
 
 		const hours = date_item.getHours().toString().padStart(2, '0');
-		const minutes =  date_item.getMinutes().toString().padStart(2, '0');
-		const seconds = date_item.getSeconds().toString().padStart(2,'0');
-		const month = date_item.getMonth().toString().padStart(2,'0');
-		const day = date_item.getDate().toString().padStart(2,'0');
-		const year = date_item.getFullYear().toString().padStart(2,'0');
+		const minutes = date_item.getMinutes().toString().padStart(2, '0');
+		const seconds = date_item.getSeconds().toString().padStart(2, '0');
+		const month = date_item.getMonth().toString().padStart(2, '0');
+		const day = date_item.getDate().toString().padStart(2, '0');
+		const year = date_item.getFullYear().toString().padStart(2, '0');
 		const fulldate = `${day}-${month}-${year}`;
-		
-		const hm = `${hours}:${minutes}`;
-		return({hours,minutes,seconds,month,day,year,fulldate,hm})
-	}
 
-	
+		const hm = `${hours}:${minutes}`;
+		return { hours, minutes, seconds, month, day, year, fulldate, hm };
+	}
 </script>
 
 <div class="flex flex-col grow">
@@ -69,26 +68,11 @@
 			{#if !Overview_mode && todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
 					{#each todos as todo}
-						<li
-							class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
-						>
-							<div>
-								<p class="lg:text-xl text-sm">{datemap(todo.CreatedDate).hm} - {datemap(todo.EndDate).hm}</p>
-								<h2 class="font-semibold lg:text-xl text-sm">{todo.Title}</h2>
-							</div>
-							<div class="flex justify-end space-x-4">
-								<button
-									aria-label="Remove Item"
-									class="hover:bg-gray-100 rounded-sm w-10 h-10 ring-neutral-400 ring-2 flex justify-center items-center"
-									><Icon src={Check} class="size-7 stroke-black" /></button
-								>
-								<button
-									aria-label="Item Settings"
-									class="hover:bg-gray-100 rounded-sm w-10 h-10 flex justify-center items-center"
-									><Icon src={EllipsisHorizontal} class="size-7 stroke-black" /></button
-								>
-							</div>
-						</li>
+						<Taskitem
+							time_start={datemap(todo.CreatedDate).hm}
+							time_end={datemap(todo.EndDate).hm}
+							Title={todo.Title}
+						/>
 					{/each}
 				</ul>
 			{:else if todos.length === 0 && !Overview_mode}<div
@@ -114,10 +98,18 @@
 				<NotesMini name={note.Title} details={note.Content} date={datemap(note.SetDate).fulldate} />
 			{/each}
 			{#each flipCards as flipCard}
-				<Flipcard name={flipCard.Title} details={flipCard.Content} date={datemap(flipCard.SetDate).fulldate} />
+				<Flipcard
+					name={flipCard.Title}
+					details={flipCard.Content}
+					date={datemap(flipCard.SetDate).fulldate}
+				/>
 			{/each}
 			{#each memcards as memcard}
-				<Memorycomp name={memcard.Title} details={memcard.Content} date={datemap(memcard.SetDate).fulldate} />
+				<Memorycomp
+					name={memcard.Title}
+					details={memcard.Content}
+					date={datemap(memcard.SetDate).fulldate}
+				/>
 			{/each}
 		</div>
 	</div>
