@@ -47,6 +47,20 @@ npm run preview #view build preview
 ```
 
 Open https://localhost:4173 with your browser to see the build preview.
+
+### Database tools
+We use Drizzle for database ORM. <br> All Drizzle ORM tools can be used with this project. <br>
+```bash
+npx drizzle-kit generate #Generate SQL migration files based on your Drizzle schema
+npx drizzle-kit migrate	 #Apply generated SQL migration files to your database
+npx drizzle-kit pull	 #Pull(introspect) database schema, convert it to Drizzle schema and save it to your codebase
+npx drizzle-kit push	 #Push your Drizzle schema to database either upon declaration or on subsequent schema changes
+npx drizzle-kit studio	 #Connect to your database and spin up proxy server for Drizzle Studio
+npx drizzle-kit check	 #Check for any race conditions(collisions) of generated migrations
+npx drizzle-kit up	 #Upgrade snapshots of previously generated migrations
+```
+Visit the Drizzle <a href="https://orm.drizzle.team/docs/kit-overview">documentation</a> for more.
+
 <hr>
 
 ## Features
