@@ -1,36 +1,44 @@
+<!--Dashboard page-->
+
 <script lang="ts">
 	import { Check, EllipsisHorizontal, Icon } from 'svelte-hero-icons';
 	import autoAnimate from '@formkit/auto-animate';
 
+	// Import all components
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
-
-
 	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
 	import Flipcard from '$lib/components/dashboard/flipcard.svelte';
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
-	import type { PageServerData } from './$types';
 
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 
-	let notes = data.notes;
-	let flipCards = data.flipcards;
-	let memcards = data.memcards;
-	let todos = data.todos;
+	// We import all data as states and setup effects to update them on the database
+	let notes = $state(data.notes);
+	let flipCards = $state(data.flipcards);
+	let memcards = $state(data.memcards);
+	let todos = $state(data.todos);
+
+	// UI States
 	let Overview_mode = $state(false);
 
+	// Date parsing function for all items
 	function datemap(date: any){
 		const date_item = new Date(date)
 
 		const hours = date_item.getHours().toString().padStart(2, '0');
 		const minutes =  date_item.getMinutes().toString().padStart(2, '0');
+		const seconds = date_item.getSeconds().toString().padStart(2,'0');
+		const month = date_item.getMonth().toString().padStart(2,'0');
+		const day = date_item.getDate().toString().padStart(2,'0');
+		const year = date_item.getFullYear().toString().padStart(2,'0');
+		const fulldate = `${day}-${month}-${year}`;
 		
 		const hm = `${hours}:${minutes}`;
-		return(hm)
+		return({hours,minutes,seconds,month,day,year,fulldate,hm})
 	}
 
-	let sync = data.sync;
 	
 </script>
 
@@ -65,7 +73,7 @@
 							class="text-black rounded-sm bg-gradient-to-br bg-neutral-200 flex lg:w-[26rem] h-20 items-center justify-between ring-gray-400/50 ring-2 p-4"
 						>
 							<div>
-								<p class="lg:text-xl text-sm">{datemap(todo.CreatedDate)} - {datemap(todo.EndDate)}</p>
+								<p class="lg:text-xl text-sm">{datemap(todo.CreatedDate).hm} - {datemap(todo.EndDate).hm}</p>
 								<h2 class="font-semibold lg:text-xl text-sm">{todo.Title}</h2>
 							</div>
 							<div class="flex justify-end space-x-4">
@@ -103,13 +111,13 @@
 		<div class="text-2xl">Notes and Memories Board</div>
 		<div class="grid lg:grid-cols-5 md:lg:grid-cols-4 justify-start p-2">
 			{#each notes as note}
-				<NotesMini name={note.Title} details={note.Content} date={note.SetDate} />
+				<NotesMini name={note.Title} details={note.Content} date={datemap(note.SetDate).fulldate} />
 			{/each}
 			{#each flipCards as flipCard}
-				<Flipcard name={flipCard.Title} details={flipCard.Content} date={flipCard.SetDate} />
+				<Flipcard name={flipCard.Title} details={flipCard.Content} date={datemap(flipCard.SetDate).fulldate} />
 			{/each}
 			{#each memcards as memcard}
-				<Memorycomp name={memcard.Title} details={memcard.Content} date={memcard.SetDate} />
+				<Memorycomp name={memcard.Title} details={memcard.Content} date={datemap(memcard.SetDate).fulldate} />
 			{/each}
 		</div>
 	</div>
