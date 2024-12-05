@@ -39,11 +39,11 @@
 
 <div class="bg-white fixed w-screen h-16 flex border-b-2 border-neutral-200 z-20">
 	<div
-		class="lg:w-[15%] w-[70%] flex justify-start pl-5 items-center text-2xl font-semibold text-black"
+		class="lg:w-[12%] w-[70%] flex justify-start pl-5 items-center text-2xl font-semibold text-black"
 	>
 		Task Assistant
 	</div>
-	<div class="lg:w-[15%] lg:flex hidden justify-between items-center text-xl text-black">
+	<div class="lg:w-[18%] lg:flex hidden justify-between items-center text-xl text-black">
 		<Datecomp />
 		<button use:melt={$trigger}>
 			{#if !prop.sync}

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Icon, Minus } from 'svelte-hero-icons';
+	import NumberFlow from '@number-flow/svelte'
+
 	let minutes = $state(25);
 	let seconds = $state(0);
 	let deg = $state(270); // Degree for the rotation
@@ -82,7 +84,11 @@
 			<Icon src={Minus} class="size-8"/>
 		</div>
 		<span class="text-white text-5xl items-center justify-center flex font-bold font-serif">
-			{minutes < 10 ? '0' : ''}{minutes}:{seconds < 10 ? '0' : ''}{seconds}
+			{minutes < 10 ? '0' : ''}
+			<NumberFlow value={minutes}/> 
+			:{seconds < 10 ? '0' : ''}
+			<NumberFlow value={seconds}/>
+			
 		</span>
 	</div>
 

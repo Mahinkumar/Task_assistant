@@ -34,7 +34,7 @@
     }
   </script>
   
-  <button onclick={switchFormat} aria-label="Display Date + Switch Date Formats">
+  <button class="w-full" onclick={switchFormat} aria-label="Display Date + Switch Date Formats">
     <h2>{formatDate(formats[currentFormatIndex])}</h2>
   </button>
   

@@ -39,6 +39,7 @@
 		"@formkit/auto-animate": "^0.8.2",
 		"@neodrag/svelte": "^2.0.6",
 		"@node-rs/argon2": "^1.1.0",
+		"@number-flow/svelte": "^0.2.2",
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
@@ -49,6 +50,7 @@
 		"drizzle-orm": "^0.33.0",
 		"lucide-svelte": "^0.461.0",
 		"marked": "^15.0.2",
+		"number-flow": "^0.4.1",
 		"postgres": "^3.4.4",
 		"svelte-hero-icons": "^5.2.0"
 	}
