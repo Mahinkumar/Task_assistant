@@ -9,36 +9,28 @@
 	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
 	import Flipcard from '$lib/components/dashboard/flipcard.svelte';
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
-
-	import type { PageData } from './$types';
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
+	// Shared user data states
+	import { shared } from './shared.svelte';
+	import datemap from '$lib/date'
+
+
+	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
 	// We import all data as states and setup effects to update them on the database
-	let notes = $state(data.notes);
-	let flipCards = $state(data.flipcards);
-	let memcards = $state(data.memcards);
-	let todos = $state(data.todos);
+	shared.notes = data.notes;
+	shared.flipCards = data.flipcards;
+	shared.memcards = data.memcards;
+	shared.todos = data.todos;
 
-	// UI States
-	let Overview_mode = $state(false);
+	let notes = shared.notes;
+	let flipCards = shared.flipCards;
+	let memcards = shared.memcards;
+	let todos = shared.todos;
 
-	// Date parsing function for all items
-	function datemap(date: any) {
-		const date_item = new Date(date);
-
-		const hours = date_item.getHours().toString().padStart(2, '0');
-		const minutes = date_item.getMinutes().toString().padStart(2, '0');
-		const seconds = date_item.getSeconds().toString().padStart(2, '0');
-		const month = date_item.getMonth().toString().padStart(2, '0');
-		const day = date_item.getDate().toString().padStart(2, '0');
-		const year = date_item.getFullYear().toString().padStart(2, '0');
-		const fulldate = `${day}-${month}-${year}`;
-
-		const hm = `${hours}:${minutes}`;
-		return { hours, minutes, seconds, month, day, year, fulldate, hm };
-	}
+	let Overview_mode = $state(false);	
 </script>
 
 <div class="flex flex-col grow">
