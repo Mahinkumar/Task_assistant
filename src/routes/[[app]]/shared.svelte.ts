@@ -18,3 +18,9 @@ export const shared = $state({
     memcards: Init_Data,
     todos: Init_Data
 })
+
+export const timer = $state({
+    minutes: 25,
+    seconds: 0,
+    ticking: false
+})

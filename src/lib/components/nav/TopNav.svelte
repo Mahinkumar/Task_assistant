@@ -4,7 +4,7 @@
 	import Datecomp from '../dashboard/Datecomp.svelte';
 	import { goto } from '$app/navigation';
 	import HeadsUpDisplay from '../features/HeadsUpDisplay.svelte';
-	import { Cloud, CloudAlert, CloudOff, CloudUpload, RefreshCw, RefreshCwOff } from 'lucide-svelte';
+	import { CloudOff, CloudUpload } from 'lucide-svelte';
 	import { createTooltip, melt } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
 
