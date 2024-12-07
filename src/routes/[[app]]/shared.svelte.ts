@@ -34,12 +34,13 @@ export const sync_state = $state({
 
 export async function try_sync(){
     if (sync_state.need_sync){
-        await sync();
         sync_state.need_sync = false;
+        await sync()
     } 
 }
 
 export async function sync(){
+    sync_state.need_sync = false;
     const response = await fetch('/sync', {
         method: 'POST',
         body: JSON.stringify({shared}),
@@ -54,6 +55,5 @@ export async function sync(){
             color: 'green'
         }
     });
-    sync_state.need_sync = false;
 }
 
