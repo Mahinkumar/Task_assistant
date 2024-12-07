@@ -46,7 +46,7 @@
 	</div>
 	<div class="lg:w-[18%] lg:flex hidden justify-between items-center text-xl text-black">
 		<Datecomp />
-		<button use:melt={$trigger}>
+		<button use:melt={$trigger} aria-label="cloud sync: {prop.sync}">
 			{#if !prop.sync}
 				<CloudOff class="mr-4 ml-4" />
 			{/if}
