@@ -1,3 +1,4 @@
+import { addToast } from "$lib/components/features/Toast.svelte";
 
 let Init_Data: {
     Id: string;
@@ -24,3 +25,20 @@ export const timer = $state({
     seconds: 0,
     ticking: false
 })
+
+export async function sync(){
+    const response = await fetch('/sync', {
+        method: 'POST',
+        body: JSON.stringify({shared}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    addToast({
+        data: {
+            title: 'Sync Server Response',
+            description:'Response From Server: ' + response.status.toString() + '\n' + 'Database sync not availible',
+            color: 'green'
+        }
+    });
+}

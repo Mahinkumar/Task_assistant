@@ -12,9 +12,8 @@
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
 	// Shared user data states
-	import { shared } from './shared.svelte';
-	import datemap from '$lib/date'
-
+	import { shared, sync } from './shared.svelte';
+	import datemap from '$lib/date';
 
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
@@ -30,7 +29,35 @@
 	let memcards = shared.memcards;
 	let todos = shared.todos;
 
-	let Overview_mode = $state(false);	
+	let Overview_mode = $state(false);
+
+	async function add(
+		n: {
+			Id: string;
+			UserId: string;
+			Type: string;
+			SetDate: Date;
+			EndDate: Date | null;
+			CreatedDate: Date;
+			Title: string;
+			Content: string | null;
+			isCompleted: boolean | null;
+		}[]
+	) {
+		const d: Date = new Date();
+		n.push({
+			Id: 'Test',
+			UserId: 'Test',
+			Type: 'Test',
+			SetDate: d,
+			EndDate: d,
+			CreatedDate: d,
+			Title: 'Test',
+			Content: 'Test',
+			isCompleted: false
+		});
+		await sync();
+	}
 </script>
 
 <div class="flex flex-col grow">
@@ -66,6 +93,7 @@
 							Title={todo.Title}
 						/>
 					{/each}
+					<!-- <button onclick={sync} class="w-64 h-32 bg-green-500">Sync</button> -->
 				</ul>
 			{:else if todos.length === 0 && !Overview_mode}<div
 					class="text-lg flex justify-center items-center h-72 border-2 border-green-200 lg:w-[26rem] w-full"
@@ -77,6 +105,12 @@
 					class="text-2xl flex text-start justify-center items-center h-72 border-2 border-green-200 p-16 bg-gray-100 lg:w-[26rem] w-full"
 				>
 					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
+				</div>
+				<div class="flex text-black">
+					<button onclick={()=> add(notes)} class="w-1/4 h-8 bg-green-200">Add Notes</button>
+					<button onclick={()=> add(flipCards)} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
+					<button onclick={()=> add(todos)} class="w-1/4 h-8 bg-red-200">Add Todos</button>
+					<button onclick={()=> add(memcards)} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
 				</div>
 			{/if}
 		</div>

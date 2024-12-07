@@ -53,10 +53,6 @@
 		deg_sec = 270;
 		seconds = 0;
 	}
-
-	onMount(() => {
-		resetTimer();
-	});
 </script>
 
 <div class="flex flex-col justify-center items-center">
