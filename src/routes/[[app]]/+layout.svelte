@@ -6,19 +6,28 @@
 	import { shared, try_sync } from './shared.svelte';
 	let { children, data } = $props();
 
-	setInterval(try_sync, 3000)
 	
 	shared.notes = data.notes;
 	shared.flipCards = data.flipcards;
 	shared.memcards = data.memcards;
 	shared.todos = data.todos;
+
+	
+	function sync_loop() {
+		setTimeout(async () => {
+			await try_sync();
+			sync_loop();
+		}, 5000);
+	};
+
+	sync_loop();
+
 </script>
 
-<Toast/>
-<TopNav sync={data.sync}/>
-<div class='w-screen h-16'></div>
+<Toast />
+<TopNav sync={data.sync} />
+<div class="w-screen h-16"></div>
 <div class="flex flex-grow">
-	<SideNav/>
+	<SideNav />
 	{@render children()}
 </div>
-
