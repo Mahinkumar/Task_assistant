@@ -54,5 +54,6 @@ export async function sync(){
             color: 'green'
         }
     });
+    sync_state.need_sync = false;
 }
 

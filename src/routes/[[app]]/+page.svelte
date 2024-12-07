@@ -16,15 +16,6 @@
 	import { sync_state } from './shared.svelte';
 	import datemap from '$lib/date';
 
-	import type { PageData } from './$types';
-	let { data }: { data: PageData } = $props();
-
-	// We import all data as states and setup effects to update them on the database
-	shared.notes = data.notes;
-	shared.flipCards = data.flipcards;
-	shared.memcards = data.memcards;
-	shared.todos = data.todos;
-
 
 	let notes = shared.notes;
 	let flipCards = shared.flipCards;
@@ -60,9 +51,6 @@
 		});
 		sync_state.need_sync = true
 	}
-
-
-	setInterval(try_sync, 3000)
 </script>
 
 <div class="flex flex-col grow">
