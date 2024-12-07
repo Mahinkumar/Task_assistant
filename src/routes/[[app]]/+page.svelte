@@ -12,7 +12,8 @@
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
 	// Shared user data states
-	import { shared, sync } from './shared.svelte';
+	import { shared, sync, try_sync } from './shared.svelte';
+	import { sync_state } from './shared.svelte';
 	import datemap from '$lib/date';
 
 	import type { PageData } from './$types';
@@ -24,7 +25,7 @@
 	shared.memcards = data.memcards;
 	shared.todos = data.todos;
 
-	let need_sync = false;
+
 	let notes = shared.notes;
 	let flipCards = shared.flipCards;
 	let memcards = shared.memcards;
@@ -57,15 +58,9 @@
 			Content: 'Test',
 			isCompleted: false
 		});
-		need_sync = true
+		sync_state.need_sync = true
 	}
 
-	async function try_sync(){
-		if (need_sync){
-			await sync();
-			need_sync = false;
-		}
-	}
 
 	setInterval(try_sync, 3000)
 </script>

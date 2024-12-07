@@ -7,6 +7,7 @@
 	import { CloudOff, CloudUpload } from 'lucide-svelte';
 	import { createTooltip, melt } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
+	import SyncCloud from './SyncCloud.svelte';
 
 	let prop = $props();
 	let mute = $state(false);
@@ -50,7 +51,7 @@
 				<CloudOff class="mr-4 ml-4" />
 			{/if}
 			{#if prop.sync}
-				<CloudUpload class="mr-4 ml-4" />
+				<SyncCloud/>
 			{/if}
 		</button>
 		{#if $open}

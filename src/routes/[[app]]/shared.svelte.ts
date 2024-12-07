@@ -26,6 +26,19 @@ export const timer = $state({
     ticking: false
 })
 
+export const sync_state = $state({
+    need_sync: false,
+    syncing_to_cloud: false,
+    sync_from_cloud: false
+})
+
+export async function try_sync(){
+    if (sync_state.need_sync){
+        await sync();
+        sync_state.need_sync = false;
+    } 
+}
+
 export async function sync(){
     const response = await fetch('/sync', {
         method: 'POST',
@@ -42,3 +55,4 @@ export async function sync(){
         }
     });
 }
+
