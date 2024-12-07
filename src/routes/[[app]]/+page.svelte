@@ -24,6 +24,7 @@
 	shared.memcards = data.memcards;
 	shared.todos = data.todos;
 
+	let need_sync = false;
 	let notes = shared.notes;
 	let flipCards = shared.flipCards;
 	let memcards = shared.memcards;
@@ -56,8 +57,17 @@
 			Content: 'Test',
 			isCompleted: false
 		});
-		await sync();
+		need_sync = true
 	}
+
+	async function try_sync(){
+		if (need_sync){
+			await sync();
+			need_sync = false;
+		}
+	}
+
+	setInterval(try_sync, 3000)
 </script>
 
 <div class="flex flex-col grow">

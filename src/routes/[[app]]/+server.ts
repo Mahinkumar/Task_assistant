@@ -3,5 +3,6 @@ import { json } from '@sveltejs/kit';
 
 export async function POST({ request, cookies }) {
     let shared = await request.json();
+    console.log(shared)
 	return json({ status: 200 });
 }
