@@ -12,7 +12,12 @@
 > Star the repository for progress and preview release updates.
 <hr>
 
-# Task Assistant
+
+![image](https://github.com/user-attachments/assets/a241481e-a31a-4c0c-b687-c5f3469103f2)
+
+<hr>
+
+## Task Assistant
 #### <a href="/">Guides</a> | <a href="/">Docs</a> | <a href="https://taskassistant.mahinkumar.com">Preview</a>
 A Personal Task Assistant web application designed to improve productivity with automated Scheduling, Organization and Notes with support for optional AI assistance.<br>
 
