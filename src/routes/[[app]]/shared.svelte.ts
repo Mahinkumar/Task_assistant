@@ -12,6 +12,14 @@ let Init_Data: {
     isCompleted: boolean | null;
 }[] = []
 
+export const settings = $state({
+    black_theme: false,
+    theme: "",
+    sidebar_expand: true,
+    Ai_api_key : "",
+    Ai_api_type : "",
+    Ai_api_url : ""
+})
 
 export const shared = $state({
     notes: Init_Data,
@@ -56,4 +64,6 @@ export async function sync(){
         }
     });
 }
+
+
 
