@@ -1,8 +1,7 @@
 
 
 > [!IMPORTANT]
-> ALPHA Release date: 13 DECEMBER 2025 <br>
-> BETA Release date: 20 DECEMBER 2025 <br>
+> ALPHA Release date: 20 DECEMBER 2025 <br>
 > <br>
 > We are planning on a major rework of UI and Certain Mechanics. <br>
 
