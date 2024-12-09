@@ -24,10 +24,13 @@ export const user_dat = pgTable('UserData', {
 		.notNull(),
 	SetDate: timestamp('SetDate', { withTimezone: true, mode: 'date' }).notNull(),
 	EndDate: timestamp('EndDate', { withTimezone: true, mode: 'date' }),
+	CompletedDate: timestamp('CompletedDate', { withTimezone: true, mode: 'date' }),
 	CreatedDate: timestamp('CreatedDate', { withTimezone: true, mode: 'date' }).notNull(),
 	Title: text('title').notNull(),
 	Content: text('content'),
-	isCompleted: boolean('iscompleted')
+	Context: text('context'),
+	difficulty: integer('difficulty').default(2),
+	isCompleted: boolean('iscompleted').default(false),
 });
 
 export type Session = typeof session.$inferSelect;
