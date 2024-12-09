@@ -12,6 +12,7 @@
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
 	// Shared user data states
+	let {data} = $props();
 	import { shared, sync, try_sync } from './shared.svelte';
 	import { sync_state } from './shared.svelte';
 	import datemap from '$lib/date';
@@ -26,29 +27,33 @@
 
 	async function add(
 		n: {
-			Id: string;
+			Id: string| null;
 			UserId: string;
 			Type: string;
-			SetDate: Date;
-			EndDate: Date | null;
-			CreatedDate: Date;
+			SetDate: string;
+			EndDate: string | null;
+			CreatedDate: string;
 			Title: string;
 			Content: string | null;
 			isCompleted: boolean | null;
-		}[]
+		}[], type: string
 	) {
 		const d: Date = new Date();
+		if (data.user){
+		shared.count += 1
 		n.push({
-			Id: 'Test',
-			UserId: 'Test',
-			Type: 'Test',
-			SetDate: d,
-			EndDate: d,
-			CreatedDate: d,
+			Id: shared.count.toString(),
+			UserId: data.user.id,
+			Type: type,
+			SetDate: d.toISOString(),
+			EndDate: d.toISOString(),
+			CreatedDate: d.toISOString(),
 			Title: 'Test',
 			Content: 'Test',
 			isCompleted: false
 		});
+		}
+		console.log("Added")
 		sync_state.need_sync = true
 	}
 </script>
@@ -100,10 +105,10 @@
 					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
 				</div>
 				<div class="flex text-black">
-					<button onclick={()=> add(notes)} class="w-1/4 h-8 bg-green-200">Add Notes</button>
-					<button onclick={()=> add(flipCards)} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
-					<button onclick={()=> add(todos)} class="w-1/4 h-8 bg-red-200">Add Todos</button>
-					<button onclick={()=> add(memcards)} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
+					<button onclick={()=> add(notes,'notes')} class="w-1/4 h-8 bg-green-200">Add Notes</button>
+					<button onclick={()=> add(flipCards,'flipcards')} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
+					<button onclick={()=> add(todos,'todos')} class="w-1/4 h-8 bg-red-200">Add Todos</button>
+					<button onclick={()=> add(memcards,'memcards')} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
 				</div>
 			{/if}
 		</div>

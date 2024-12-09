@@ -16,16 +16,17 @@ export const session = pgTable('session', {
 });
 
 export const user_dat = pgTable('UserData', {
-	Id: text('id').primaryKey(),
+	sno: serial('sno').primaryKey(),
+	Id: text('id'),
 	UserId: text('user_id')
 		.notNull()
 		.references(() => user.id),
 	Type: text('type')
 		.notNull(),
-	SetDate: timestamp('SetDate', { withTimezone: true, mode: 'date' }).notNull(),
-	EndDate: timestamp('EndDate', { withTimezone: true, mode: 'date' }),
-	CompletedDate: timestamp('CompletedDate', { withTimezone: true, mode: 'date' }),
-	CreatedDate: timestamp('CreatedDate', { withTimezone: true, mode: 'date' }).notNull(),
+	SetDate: timestamp('SetDate', { withTimezone: true, mode: 'string' }).notNull(),
+	EndDate: timestamp('EndDate', { withTimezone: true, mode: 'string' }),
+	CompletedDate: timestamp('CompletedDate', { withTimezone: true, mode: 'string' }),
+	CreatedDate: timestamp('CreatedDate', { withTimezone: true, mode: 'string' }).notNull(),
 	Title: text('title').notNull(),
 	Content: text('content'),
 	Context: text('context'),

@@ -11,6 +11,7 @@
 	shared.flipCards = data.flipcards;
 	shared.memcards = data.memcards;
 	shared.todos = data.todos;
+	shared.count = data.total;
 
 	
 	function sync_loop() {

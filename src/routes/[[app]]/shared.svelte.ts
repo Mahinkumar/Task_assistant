@@ -1,12 +1,13 @@
 import { addToast } from "$lib/components/features/Toast.svelte";
 
 let Init_Data: {
-    Id: string;
+    sno: number;
+    Id: string| null;
     UserId: string;
     Type: string;
-    SetDate: Date;
-    EndDate: Date | null;
-    CreatedDate: Date;
+    SetDate: string;
+    EndDate: string | null;
+    CreatedDate: string;
     Title: string;
     Content: string | null;
     isCompleted: boolean | null;
@@ -25,7 +26,8 @@ export const shared = $state({
     notes: Init_Data,
     flipCards: Init_Data,
     memcards: Init_Data,
-    todos: Init_Data
+    todos: Init_Data,
+    count: 0,
 })
 
 export const timer = $state({
