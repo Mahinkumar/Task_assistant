@@ -20,14 +20,10 @@ let Init_Data: {
 
 export const load = async (event) => {
     if (!event.locals.user) {
-        return { user: null, notes:  Init_Data, flipcards:  Init_Data, memcards: Init_Data, todos: Init_Data, sync: false, total: 0};
+        return { user: null, all_data:Init_Data, sync: false, total: 0};
     } else {
-        let notes = await db.select().from(table.user_dat).where(and(eq(table.user_dat.UserId, event.locals.user.id), eq(table.user_dat.Type, 'notes')));
-        let flipcards = await db.select().from(table.user_dat).where(and(eq(table.user_dat.UserId, event.locals.user.id), eq(table.user_dat.Type, 'flipcards')));
-        let memcards = await db.select().from(table.user_dat).where(and(eq(table.user_dat.UserId, event.locals.user.id), eq(table.user_dat.Type, 'memcards')));
-        let todos = await db.select().from(table.user_dat).where(and(eq(table.user_dat.UserId, event.locals.user.id), eq(table.user_dat.Type, 'todos')));
-        let total = notes.length + flipcards.length + memcards.length + todos.length
-        return { user: event.locals.user, notes: notes, flipcards: flipcards, memcards: memcards, todos: todos, sync: true, total: total};
+        let all_data = await db.select().from(table.user_dat).where(eq(table.user_dat.UserId, event.locals.user.id));
+        return { user: event.locals.user, all_data:all_data, sync: true, total: all_data.length};
     }
 };
 

@@ -31,18 +31,14 @@ export async function POST({ request, cookies }) {
     if (user_token) {
         let { session, user } = await validateSessionToken(user_token)
         if (user) {
-            let notes = shared.shared.notes;
-            let flipCards = shared.shared.flipCards;
-            let memcards = shared.shared.memcards;
-            let todos = shared.shared.todos; 
-            commit_user_data(user,merge_data(notes,flipCards,memcards,todos))
+            commit_user_data(user,shared.shared.all_data)
             return json({ status: 200 });
         } else {
             // Not an authenticated user 
             return json({ status: 500 });
         }
     } else {
-        // Not Logged in user
+        // Not Logged in user 
         return json({ status: 500 });
     }
 }
@@ -66,3 +62,4 @@ function merge_data(...arg: userData){
     } 
     return Final_data;
 }
+

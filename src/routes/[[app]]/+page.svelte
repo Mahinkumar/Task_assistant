@@ -13,18 +13,18 @@
 
 	// Shared user data states
 	let {data} = $props();
-	import { shared, sync, try_sync } from './shared.svelte';
+	import { cache_data, shared, sync, try_sync } from './shared.svelte';
 	import { sync_state } from './shared.svelte';
 	import datemap from '$lib/date';
 
-
-	let notes = shared.notes;
-	let flipCards = shared.flipCards;
-	let memcards = shared.memcards;
-	let todos = shared.todos;
-
+	let all_data = $state(shared.all_data);
+	let notes = $state(shared.notes);
+	let flipCards = $state(shared.flipCards);
+	let memcards = $state(shared.memcards);
+	let todos = $state(shared.todos);
 	let Overview_mode = $state(false);
 
+	
 	async function add(
 		n: {
 			Id: string| null;
@@ -52,7 +52,61 @@
 			Content: 'Test',
 			isCompleted: false
 		});
+		if (type == "notes"){
+			shared.notes.push({
+			sno: 0,
+			Id: shared.count.toString(),
+			UserId: data.user.id,
+			Type: type,
+			SetDate: d.toISOString(),
+			EndDate: d.toISOString(),
+			CreatedDate: d.toISOString(),
+			Title: 'Test',
+			Content: 'Test',
+			isCompleted: false
+		})
+		}if (type == "memcards"){
+			shared.memcards.push({
+			sno: 0,
+			Id: shared.count.toString(),
+			UserId: data.user.id,
+			Type: type,
+			SetDate: d.toISOString(),
+			EndDate: d.toISOString(),
+			CreatedDate: d.toISOString(),
+			Title: 'Test',
+			Content: 'Test',
+			isCompleted: false
+		})
+		}if (type == "todos"){
+			shared.todos.push({
+			sno: 0,
+			Id: shared.count.toString(),
+			UserId: data.user.id,
+			Type: type,
+			SetDate: d.toISOString(),
+			EndDate: d.toISOString(),
+			CreatedDate: d.toISOString(),
+			Title: 'Test',
+			Content: 'Test',
+			isCompleted: false
+		})
+		}if (type == "flipcards"){
+			shared.flipCards.push({
+			sno: 0,
+			Id: shared.count.toString(),
+			UserId: data.user.id,
+			Type: type,
+			SetDate: d.toISOString(),
+			EndDate: d.toISOString(),
+			CreatedDate: d.toISOString(),
+			Title: 'Test',
+			Content: 'Test',
+			isCompleted: false
+		})
 		}
+		}
+		
 		console.log("Added")
 		sync_state.need_sync = true
 	}
@@ -105,10 +159,10 @@
 					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
 				</div>
 				<div class="flex text-black">
-					<button onclick={()=> add(notes,'notes')} class="w-1/4 h-8 bg-green-200">Add Notes</button>
-					<button onclick={()=> add(flipCards,'flipcards')} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
-					<button onclick={()=> add(todos,'todos')} class="w-1/4 h-8 bg-red-200">Add Todos</button>
-					<button onclick={()=> add(memcards,'memcards')} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
+					<button onclick={()=> add(all_data,'notes')} class="w-1/4 h-8 bg-green-200">Add Notes</button>
+					<button onclick={()=> add(all_data,'flipcards')} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
+					<button onclick={()=> add(all_data,'todos')} class="w-1/4 h-8 bg-red-200">Add Todos</button>
+					<button onclick={()=> add(all_data,'memcards')} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
 				</div>
 			{/if}
 		</div>
