@@ -63,7 +63,7 @@ export async function sync(){
     addToast({
         data: {
             title: 'Sync Server Response',
-            description:'Response From Server: ' + response.status.toString() + '\n' + 'Database sync not availible',
+            description:'Successful Sync to Database',
             color: 'green'
         }
     });

@@ -23,7 +23,7 @@
 	let memcards = $state(shared.memcards);
 	let todos = $state(shared.todos);
 	let Overview_mode = $state(false);
-
+	let disp_todos = $derived(todos.slice(0,3))
 	
 	async function add(
 		n: {
@@ -138,7 +138,7 @@
 			</h1>
 			{#if !Overview_mode && todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
-					{#each todos as todo}
+					{#each disp_todos as todo}
 						<Taskitem
 							time_start={datemap(todo.CreatedDate).hm}
 							time_end={datemap(todo.EndDate).hm}

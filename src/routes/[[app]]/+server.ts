@@ -55,11 +55,3 @@ async function commit_user_data( user: { id: string; username: string; }, new_da
     }});
 }
 
-function merge_data(...arg: userData){
-    let Final_data: userData = [];
-    for (let i = 0; i < arg.length; i++){
-        Final_data = Final_data.concat(arg[i])
-    } 
-    return Final_data;
-}
-
