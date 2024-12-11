@@ -63,7 +63,7 @@
         <div class="text-lg text-gray-700 break-words">
 			{#each command as todo}
 				{todo.title} -> performed in ->
-				{todo.type}
+				{todo.type} <br>
 			{/each}
 			
         </div>
