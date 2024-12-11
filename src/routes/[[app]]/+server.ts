@@ -31,8 +31,8 @@ export async function POST({ request, cookies }) {
     if (user_token) {
         let { session, user } = await validateSessionToken(user_token)
         if (user) {
-            commit_user_data(user,shared.shared.all_data)
-            return json({ status: 200 });
+            let data = await commit_user_data(user,shared.shared.all_data);
+            return json({ status: 200, data: data });
         } else {
             // Not an authenticated user 
             return json({ status: 500 });
@@ -49,9 +49,10 @@ async function commit_user_data( user: { id: string; username: string; }, new_da
     let insertion_data: dataFrag; 
     await db.transaction(async (tx) => {
     for(let i=min; i<new_data.length ; i++){
-        insertion_data = new_data[i]
-        delete insertion_data.sno
-        await tx.insert(table.user_dat).values(insertion_data);
+        delete new_data[i].sno
+        let out = await tx.insert(table.user_dat).values(new_data[i]).returning({sno: table.user_dat.sno});
+        new_data[i].sno = out[0].sno
     }});
+    return new_data
 }
 

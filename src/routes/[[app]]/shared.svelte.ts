@@ -1,6 +1,6 @@
 import { addToast } from "$lib/components/features/Toast.svelte";
 
-let Init_Data: {
+type Init_Data_type = {
     sno: number;
     Id: string| null;
     UserId: string;
@@ -11,7 +11,9 @@ let Init_Data: {
     Title: string;
     Content: string | null;
     isCompleted: boolean | null;
-}[] = []
+}
+
+let Init_Data: Init_Data_type[] = []
 
 export const settings = $state({
     black_theme: false,
@@ -60,6 +62,8 @@ export async function sync(){
             'Content-Type': 'application/json'
         }
     });
+    let n = await response.json() 
+    shared.all_data = n.data
     addToast({
         data: {
             title: 'Sync Server Response',
@@ -70,10 +74,10 @@ export async function sync(){
 }
 
 export function cache_data(){
-    let notes: { sno: number; Id: string | null; UserId: string; Type: string; SetDate: string; EndDate: string | null; CreatedDate: string; Title: string; Content: string | null; isCompleted: boolean | null; }[] = [];
-    let flipCards: { sno: number; Id: string | null; UserId: string; Type: string; SetDate: string; EndDate: string | null; CreatedDate: string; Title: string; Content: string | null; isCompleted: boolean | null; }[] = [];
-    let todos: { sno: number; Id: string | null; UserId: string; Type: string; SetDate: string; EndDate: string | null; CreatedDate: string; Title: string; Content: string | null; isCompleted: boolean | null; }[] = [];
-    let memcards: { sno: number; Id: string | null; UserId: string; Type: string; SetDate: string; EndDate: string | null; CreatedDate: string; Title: string; Content: string | null; isCompleted: boolean | null; }[] = [];
+    let notes: Init_Data_type[] = [];
+    let flipCards: Init_Data_type[] = [];
+    let todos: Init_Data_type[] = [];
+    let memcards: Init_Data_type[] = [];
     for(let i=0;i<shared.all_data.length;i++){
         if (shared.all_data[i].Type === 'notes'){
             notes.push(shared.all_data[i])

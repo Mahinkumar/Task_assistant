@@ -15,7 +15,7 @@
 		setTimeout(async () => {
 			await try_sync();
 			sync_loop();
-		}, 5000);
+		}, 7000);
 	};
 
 	sync_loop();
