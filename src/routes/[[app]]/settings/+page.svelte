@@ -43,31 +43,39 @@
   
   
             {/if}{#if screen === 3}
-            <div class="text-xl">AI Integrations</div>
+            <div class="text-xl">AI Integrations (Powered by HuggingFace)</div>
+            <hr>
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer">
+                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-1 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <span class="ms-3 text-sm font-medium text-gray-900 ">AI Features</span>
+            </label>
             <hr>
             <div class="text-lg font-bold text-gray-800 pt-4">API Key</div>
-            <input type="text" name="API_KEY" placeholder="API_Key" class="form-input"/>
+            <input type="text" name="API_KEY" placeholder="hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" class="form-input"/>
             <hr>
-            <div class="text-lg font-bold text-gray-800 pt-4">API Provider</div>
-            <div class="grid grid-cols-2">
-                <div class="text-md text-gray-800">Open AI</div>
-                <input type="radio" class="form-radio" name="API_TYPE" placeholder="API_Key" value="OpenAI"/>
-                <div class="text-md text-gray-800">Antrhopic</div>
-                <input type="radio" name="API_TYPE" placeholder="API_Key" class="form-radio" value="Anthropic"/>
-                <div class="text-md text-gray-800">Hugging Face</div>
-                <input type="radio" name="API_TYPE" placeholder="API_Key" class="form-radio" value="HuggingFace"/>
-                <div class="text-md text-gray-800">Other</div>
-                <input type="radio" name="API_TYPE" placeholder="API_Key" class="form-radio" value="Other"/>
-            </div>
+
+            <div class="text-lg font-bold text-gray-800 pt-4">Model for AI Actions and Summary</div> 
+            <input type="text" name="MAS" placeholder="eg: meta-llama/Llama-3.2-3B-Instruct" class="form-input"/>
             <hr>
-            <div class="text-lg font-bold text-gray-800 pt-4">API URL</div> 
-            <input type="text" name="API_URL" placeholder="API_URL" class="form-input"/>
+
+            <div class="text-lg font-bold text-gray-800 pt-4">Model for AI Classification</div> 
+            <input type="text" name="MC" placeholder="eg: meta-llama/Llama-3.2-3B-Instruct" class="form-input"/>
             <hr>
+
+            <div class="text-lg font-bold text-gray-800 pt-4">Model for Question and Answering</div> 
+            <input type="text" name="MQA" placeholder="eg: deepset/roberta-base-squad2" class="form-input"/>
+            <hr>
+
+            <div class="text-lg font-bold text-gray-800 pt-4">Additional context</div> 
+            <input type="text" name="Context" placeholder="eg: Your name is task assistant" class="form-input"/>
+            <hr>
+            
         
             {/if}{#if screen === 4}
             <div class="text-2xl">Sharing Settings</div>
             {/if}
-            <button class="absolute bottom-40 w-[97%] group flex h-10 items-center justify-center rounded-md border border-gray-200 bg-gray-200 px-4 text-gray-950 hover:bg-gradient-to-b hover:from-gray-100 hover:via-gray-100 hover:to-gray-100 active:shadow-inner"><span class="block group-active:[transform:translate3d(0,1px,0)]">Save</span></button>
+            <button class="bottom-40 w-[97%] group flex h-10 items-center justify-center rounded-md border border-gray-200 bg-gray-200 px-4 text-gray-950 hover:bg-gradient-to-b hover:from-gray-100 hover:via-gray-100 hover:to-gray-100 active:shadow-inner"><span class="block group-active:[transform:translate3d(0,1px,0)]">Save</span></button>
         </div>
 	</div>
 </div>
