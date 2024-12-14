@@ -13,103 +13,22 @@
 
 	// Shared user data states
 	let {data} = $props();
-	import { cache_data, shared, sync, try_sync } from './shared.svelte';
+	import { get_type_data, shared, sync, try_sync, type Init_Data_type } from './shared.svelte';
 	import { sync_state } from './shared.svelte';
 	import datemap from '$lib/date';
+	
+
+	
 
 	let all_data = $state(shared.all_data);
-	let notes = $state(shared.notes);
-	let flipCards = $state(shared.flipCards);
-	let memcards = $state(shared.memcards);
-	let todos = $state(shared.todos);
+	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let Overview_mode = $state(false);
-	let disp_todos = $derived(todos.slice(0,3))
+
+	let flipCards = $derived(get_type_data(shared.all_data,"flipcards"));
+	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
+	let todos = $derived(get_type_data(shared.all_data,"todos"));
+	let disp_todos = $derived(get_type_data(shared.all_data,"todos").slice(0,3));
 	
-	async function add(
-		n: {
-			Id: string| null;
-			UserId: string;
-			Type: string;
-			SetDate: string;
-			EndDate: string | null;
-			CreatedDate: string;
-			Title: string;
-			Content: string | null;
-			isCompleted: boolean | null;
-		}[], type: string
-	) {
-		const d: Date = new Date();
-		if (data.user){
-		shared.count += 1
-		n.push({
-			Id: shared.count.toString(),
-			UserId: data.user.id,
-			Type: type,
-			SetDate: d.toISOString(),
-			EndDate: d.toISOString(),
-			CreatedDate: d.toISOString(),
-			Title: 'Test',
-			Content: 'Test',
-			isCompleted: false
-		});
-		if (type == "notes"){
-			shared.notes.push({
-			sno: 0,
-			Id: shared.count.toString(),
-			UserId: data.user.id,
-			Type: type,
-			SetDate: d.toISOString(),
-			EndDate: d.toISOString(),
-			CreatedDate: d.toISOString(),
-			Title: 'Test',
-			Content: 'Test',
-			isCompleted: false
-		})
-		}if (type == "memcards"){
-			shared.memcards.push({
-			sno: 0,
-			Id: shared.count.toString(),
-			UserId: data.user.id,
-			Type: type,
-			SetDate: d.toISOString(),
-			EndDate: d.toISOString(),
-			CreatedDate: d.toISOString(),
-			Title: 'Test',
-			Content: 'Test',
-			isCompleted: false
-		})
-		}if (type == "todos"){
-			shared.todos.push({
-			sno: 0,
-			Id: shared.count.toString(),
-			UserId: data.user.id,
-			Type: type,
-			SetDate: d.toISOString(),
-			EndDate: d.toISOString(),
-			CreatedDate: d.toISOString(),
-			Title: 'Test',
-			Content: 'Test',
-			isCompleted: false
-		})
-		}if (type == "flipcards"){
-			shared.flipCards.push({
-			sno: 0,
-			Id: shared.count.toString(),
-			UserId: data.user.id,
-			Type: type,
-			SetDate: d.toISOString(),
-			EndDate: d.toISOString(),
-			CreatedDate: d.toISOString(),
-			Title: 'Test',
-			Content: 'Test',
-			isCompleted: false
-		})
-		}
-		}
-		
-		console.log("Added")
-		sync_state.need_sync = true
-	}
 </script>
 
 <div class="flex flex-col grow">
@@ -158,12 +77,7 @@
 				>
 					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
 				</div>
-				<div class="flex text-black">
-					<button onclick={()=> add(all_data,'notes')} class="w-1/4 h-8 bg-green-200">Add Notes</button>
-					<button onclick={()=> add(all_data,'flipcards')} class="w-1/4 h-8 bg-violet-200">Add flipcards</button>
-					<button onclick={()=> add(all_data,'todos')} class="w-1/4 h-8 bg-red-200">Add Todos</button>
-					<button onclick={()=> add(all_data,'memcards')} class="w-1/4 h-8 bg-blue-200">Add Memory</button>
-				</div>
+
 			{/if}
 		</div>
 		<!--First Row with Assist UI-->
