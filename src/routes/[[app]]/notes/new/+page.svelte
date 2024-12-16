@@ -34,6 +34,12 @@
 	import { getElementById } from '@melt-ui/svelte/internal/helpers';
 
 	const checkbox = () => {markdown += '- [ ] '};
+	let date = new Date();
+	let day = date.getDate().toString().padStart(2, '0');
+	let month = (date.getMonth() + 1).toString().padStart(2, '0');
+	let year = date.getFullYear();
+
+	let date_str = `${year}-${month}-${day}`;
 	const bold = () => {markdown += '**Bold Text** '}
 
 	const h1 = () => { markdown += '# ' };
@@ -73,7 +79,8 @@
 			/>
 			<input
 				type="hidden"
-				value="new"
+				value={data.user.id}
+                name="user_id"
 			/>
 		</div>
 		<div class="flex w-2/3 justify-evenly items-center space-x-4">
@@ -117,7 +124,7 @@
 			</div>
 			<div class="separator"></div>
 			<a href="/#" class="link nowrap flex-shrink-0"> Edited 2 hours ago </a>
-			<input type="date" name="date_of_note" class="form-input ml-auto rounded-md bg-white px-3 font-medium text-lg w-42"/>
+			<input type="date" name="date_of_note" value={date_str} class="form-input ml-auto rounded-md bg-white px-3 font-medium text-lg w-42"/>
 			<div class="separator"></div>
 			<div class="flex items-center gap-2">
 				<button class="item" aria-label="align center" type="button">

@@ -73,7 +73,8 @@
 			/>
 			<input
 				type="hidden"
-				value="new"
+				value={data.user.id}
+                name="user_id"
 			/>
 		</div>
 		<div class="flex w-2/3 justify-evenly items-center space-x-4">
