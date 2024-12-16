@@ -1,8 +1,10 @@
 <!--Dashboard page-->
 
 <script lang="ts">
-	import { Check, EllipsisHorizontal, Icon } from 'svelte-hero-icons';
 	import autoAnimate from '@formkit/auto-animate';
+	import { get_type_data, shared, type Init_Data_type } from './shared.svelte';
+	import { sync_state } from './shared.svelte';
+	import datemap from '$lib/date';
 
 	// Import all components
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
@@ -13,22 +15,18 @@
 
 	// Shared user data states
 	let {data} = $props();
-	import { get_type_data, shared, sync, try_sync, type Init_Data_type } from './shared.svelte';
-	import { sync_state } from './shared.svelte';
-	import datemap from '$lib/date';
+	
 	
 
 	
-
-	let all_data = $state(shared.all_data);
-	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let Overview_mode = $state(false);
 
+
+	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let flipCards = $derived(get_type_data(shared.all_data,"flipcards"));
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
 	let todos = $derived(get_type_data(shared.all_data,"todos"));
 	let disp_todos = $derived(get_type_data(shared.all_data,"todos").slice(0,3));
-	
 </script>
 
 <div class="flex flex-col grow">
@@ -87,7 +85,11 @@
 		<div class="text-2xl">Notes and Memories Board</div>
 		<div class="grid lg:grid-cols-5 md:lg:grid-cols-4 justify-start p-2">
 			{#each notes as note}
-				<NotesMini name={note.Title} details={note.Content} date={datemap(note.SetDate).fulldate} />
+				<NotesMini 
+					name={note.Title}
+				 	details={note.Content} 
+					date={datemap(note.SetDate).fulldate}
+				/>
 			{/each}
 			{#each flipCards as flipCard}
 				<Flipcard

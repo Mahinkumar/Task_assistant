@@ -1,4 +1,6 @@
 import { addToast } from "$lib/components/features/Toast.svelte";
+import { onMount } from "svelte";
+import { on } from "svelte/events";
 
 export type Init_Data_type = {
     sno?: number;
@@ -11,7 +13,6 @@ export type Init_Data_type = {
     Title: string;
     Content: string | null;
     isCompleted: boolean | null;
-    isCommited?: boolean;
 }
 
 let Init_Data: Init_Data_type[] = []
@@ -39,36 +40,7 @@ export const timer = $state({
 
 export const sync_state = $state({
     need_sync: false,
-    syncing_to_cloud: false,
-    sync_from_cloud: false
 })
-
-export async function try_sync() {
-    if (sync_state.need_sync) {
-        sync_state.need_sync = false;
-        await sync()
-    }
-}
-
-export async function sync() {
-    sync_state.need_sync = false;
-    const response = await fetch('/sync', {
-        method: 'POST',
-        body: JSON.stringify({ shared }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    let n = await response.json()
-    shared.all_data = n.data
-    addToast({
-        data: {
-            title: 'Sync Server Response',
-            description: 'Successful Sync to Database',
-            color: 'green'
-        }
-    });
-}
 
 export function get_type_data(n: Init_Data_type[], type: string) {
     let data: Init_Data_type[] = [];
@@ -83,20 +55,12 @@ export function get_type_data(n: Init_Data_type[], type: string) {
 }
 
 export function add(data: Init_Data_type) {
-    if (!data.isCommited) {
-        delete data.sno;
-        delete data.isCommited;
-        shared.all_data.push(data);
-    }
-    else {
-        return;
-    }
+    shared.all_data.push(data);
 }
 
 
 export function construct_data( 
     Id: string | null, 
-    UserId: string, 
     Type: string, 
     SetDate: string, 
     EndDate: string | null, 
@@ -121,6 +85,5 @@ export function construct_data(
         };
         return new_data;
     }
-
 
 

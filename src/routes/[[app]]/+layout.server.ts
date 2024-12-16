@@ -4,6 +4,8 @@ import * as table from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
 import { and, eq } from 'drizzle-orm';
 
+
+
 let Init_Data: {
     sno: number;
     Id: string;
@@ -18,9 +20,9 @@ let Init_Data: {
 }[] = []
 
 
-export const load = async (event) => {
+export const load = async (event: { locals: { user: { id: string }; }; }) => {
     if (!event.locals.user) {
-        return { user: null, all_data:Init_Data, sync: false, total: 0};
+        return { user: {id : ""}, all_data:Init_Data, sync: false, total: 0};
     } else {
         let all_data = await db.select().from(table.user_dat).where(eq(table.user_dat.UserId, event.locals.user.id));
         return { user: event.locals.user, all_data:all_data, sync: true, total: all_data.length};
