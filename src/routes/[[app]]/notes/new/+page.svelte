@@ -77,7 +77,7 @@
 			/>
 		</div>
 		<div class="flex w-2/3 justify-evenly items-center space-x-4">
-			<button class="ml-auto rounded-md bg-white py-1 font-medium text-lg" onclick={()=>{old=markdown}} formaction="?/edit"><SaveIcon /></button>
+			<button class="ml-auto rounded-md bg-white py-1 font-medium text-lg" onclick={()=>{old=markdown}} formaction="?/new"><SaveIcon /></button>
 			<button class="ml-auto rounded-md bg-white py-1 font-medium text-lg" type="button"><BookDownIcon /></button>
 			<div class="separator"></div>
 			<div class="flex items-center gap-1">

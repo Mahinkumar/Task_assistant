@@ -2,8 +2,7 @@
 
 <script lang="ts">
 	import autoAnimate from '@formkit/auto-animate';
-	import { get_type_data, shared, type Init_Data_type } from './shared.svelte';
-	import { sync_state } from './shared.svelte';
+	import { get_type_data, shared } from './shared.svelte';
 	import datemap from '$lib/date';
 
 	// Import all components
@@ -13,15 +12,10 @@
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
-	// Shared user data states
-	let {data} = $props();
-	
-	
-
 	
 	let Overview_mode = $state(false);
 
-
+	// Shared user data states
 	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let flipCards = $derived(get_type_data(shared.all_data,"flipcards"));
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
