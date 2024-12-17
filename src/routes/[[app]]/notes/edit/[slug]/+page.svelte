@@ -10,8 +10,8 @@
 	$effect(() => (val = DOMPurify.sanitize(marked(markdown))));
 	let { data, form }: { data: PageData, form: ActionData } = $props();
 
-	let markdown = $state("");
-	let val = $state('');
+	let markdown = $state(data.content);
+	let val = $state("");
 	let Button = $state(0);
 
 	import {
@@ -55,6 +55,8 @@
 	markdown += '| Column 1 | Column 2 |\n';
 	markdown += '|-----------|-----------|\n';
 	};
+
+	
 </script>
 
 <form class="flex flex-col w-full h-full pl-2 pr-2 ml-3 mr-3 bg-white" method="POST" 
@@ -68,13 +70,18 @@
 				type="text"
 				placeholder="Note_Name"
 				name="note_name"
-				value={data.name}
+				value={data.title}
 				required
 			/>
 			<input
 				type="hidden"
 				value={data.user.id}
                 name="user_id"
+			/>
+			<input
+				type="hidden"
+				value={data.sno}
+                name="sno"
 			/>
 		</div>
 		<div class="flex w-2/3 justify-evenly items-center space-x-4">
@@ -118,7 +125,7 @@
 			</div>
 			<div class="separator"></div>
 			<a href="/#" class="link nowrap flex-shrink-0"> Edited 2 hours ago </a>
-			<input type="date" name="date_of_note" class="form-input ml-auto rounded-md bg-white px-3 font-medium text-lg w-42"/>
+			<input type="date" name="date_of_note" value={data.date_of_note} class="form-input ml-auto rounded-md bg-white px-3 font-medium text-lg w-42"/>
 			<div class="separator"></div>
 			<div class="flex items-center gap-2">
 				<button class="item" aria-label="align center" type="button">
