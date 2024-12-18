@@ -1,8 +1,10 @@
 <script lang="ts">
+	// @ts-nocheck
 	import { goto } from '$app/navigation';
 	import { ChevronRight, Ellipsis, GalleryThumbnails, Pencil, Trash2 } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
-
+	import { marked } from 'marked';
+	import DOMPurify from "isomorphic-dompurify";
 	let data = $props();
 
 	let show_settings = $state(false);
@@ -10,6 +12,9 @@
 	if (!data.sno) {
 		data.sno = 0;
 	}
+
+
+	let val = DOMPurify.sanitize(marked(data.details));
 </script>
 
 <form
@@ -20,7 +25,7 @@
 	}}
 >
 	<div class="font-bold text-xl mb-2">{data.name}</div>
-	<p class="text-sm mb-4">{data.details}</p>
+	<p class="text-sm mb-4 prose prose-sm prose-headings:mb-2 prose-headings:m-0 overflow-y-auto h-36">{@html val}</p>
 	<div class="text-xs">{data.date}</div>
 	<div class="flex space-x-2 absolute right-4 bottom-8 transtion-all duration-700">
 		<button

@@ -2,7 +2,7 @@
 	// @ts-nocheck
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
-	import DOMPurify from 'dompurify';
+	import DOMPurify from "isomorphic-dompurify";
 	import Notestoolbar from '$lib/components/features/Notestoolbar.svelte';
 	import { enhance } from '$app/forms';
 
@@ -93,7 +93,7 @@
 
 	<div class="flex justify-stretch h-screen">
 		<div class="w-[100%] p-5 h-full border-2 border-gray-400">
-			<div class="prose max-w-fit">{@html val}</div>
+			<div class="prose max-w-fit prose-headings:mb-2 prose-headings:m-0">{@html val}</div>
 		</div>
 	</div>
 </div>

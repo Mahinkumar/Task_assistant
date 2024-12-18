@@ -2,7 +2,7 @@
 	// @ts-nocheck
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
-	import DOMPurify from 'dompurify';
+	import DOMPurify from "isomorphic-dompurify";
 	import Notestoolbar from '$lib/components/features/Notestoolbar.svelte';
 	import { enhance } from '$app/forms';
 
@@ -145,7 +145,7 @@
 			placeholder="Enter your notes here. Markdown is supported !"
 		></textarea>
 		<div class="w-[50%] p-5 h-full border-2 border-l-0 border-gray-400">
-			<div class="prose max-w-fit">{@html val}</div>
+			<div class="prose max-w-fit prose-headings:mb-2 prose-headings:m-0">{@html val}</div>
 		</div>
 	</div>
 </form>
