@@ -1,6 +1,8 @@
 <script lang="ts">
     import { BookOpenText, BookText, Bot } from 'lucide-svelte';
 	import PomodoroClock from './PomodoroClock.svelte';
+    import Typewriter, { cascade, concurrent, scramble } from 'svelte-typewriter'
+	import { fade } from 'svelte/transition';
     let clockmode = $state("Ai-Brief") 
 </script>
 <div class="h-96 w-full flex flex-col items-center">
@@ -9,14 +11,26 @@
         <button aria-label="Ai-Brief Mode" class="transition-all duratiion-700 h-8 w-10 hover:text-gray-800 flex items-center justify-center {clockmode == 'Ai-Brief' ? 'text-black' : 'text-gray-400'}" onclick={()=>clockmode='Ai-Brief'}><Bot /></button>
         <button aria-label="Switch Work/Rest Modes" class="transition-all duratiion-700 h-8 w-20 text-lg font-semibold" onclick={()=> clockmode = (clockmode == 'Ai-Brief' ? 'Work' : 'Ai-Brief')}>{clockmode}</button>
     </div>
-    <div class="flex w-full items-center justify-evenly h-full">
-        <PomodoroClock/>
-        <div class="w-[50%] text-2xl h-full flex flex-col justify-center items-start space-y-16">
-            <div class="font-semibold text-4xl">Start the Timer whenever you are ready.</div>
-            <div>
-                <div class="flex"><h1 class="font-bold">Current Task: &nbsp; </h1> Meet With Developers</div>
-                <div class="flex"><h1 class="font-bold">Next Task: &nbsp; </h1> Break - 5 Minutes</div>
+    <div class="w-full flex items-star justify-evenly h-full relative">
+        {#if clockmode=="Ai-Brief"}
+        <Typewriter>
+            <div use:cascade={{ unwriteInterval: 100 }} class="font-semibold text-4xl p-8 w-[64rem] text-center">
+                ✨ Hi there! How can I assist you today? Whether it's managing your schedule, setting reminders, or just getting things done - I'm here to help!
+            </div>
+        </Typewriter>
+        <input type="text" class="ml-[5%] w-[90%] absolute bottom-10" />
+        {:else}
+        <div class="h-full flex w-full items-center justify-evenly" in:fade>
+            <PomodoroClock/>
+            <div class="w-[50%] text-2xl h-full flex flex-col justify-center items-start space-y-16">
+                <div class="font-semibold text-4xl">Start the Timer whenever you are ready.</div>
+                <div>
+                    <div class="flex"><h1 class="font-bold">Current Task: &nbsp; </h1> Meet With Developers</div>
+                    <div class="flex"><h1 class="font-bold">Next Task: &nbsp; </h1> Break - 5 Minutes</div>
+                </div>
             </div>
         </div>
+        {/if}
+        
     </div>
 </div>
