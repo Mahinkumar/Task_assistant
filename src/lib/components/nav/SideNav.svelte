@@ -7,7 +7,7 @@
 </script>
 
 
-<div class="flex flex-col justify-start fixed h-full transition-all duration-700 border-r-2 border-gray-200 {closed ? 'w-14':'w-48'}" >
+<div class="z-10 flex flex-col justify-start fixed h-full transition-all duration-700 border-r-2 border-gray-200 {closed ? 'w-14':'w-48'}" >
     <SideNavButton open={closed} icon={RectangleGroup} class="" url="/" text="Dashboard"></SideNavButton>
     <SideNavButton open={closed} icon={ClipboardDocumentCheck} class="" url="/tasks" text="Tasks"></SideNavButton>
     <SideNavButton open={closed} icon={PencilSquare} class="" url="/notes" text="Notes"></SideNavButton>
@@ -25,4 +25,4 @@
         <Icon src={ArrowRightEndOnRectangle} class="size-7 stroke-black {!closed ? 'rotate-180' : 'rotate-0'}"></Icon>
     </button>
 </div>
-<div class="h-screen transition-all duration-700  {!closed ? 'w-56' : 'w-14'}"></div>
+<div class="z-8 h-screen transition-all duration-700  {!closed ? 'w-56' : 'w-14'}"></div>

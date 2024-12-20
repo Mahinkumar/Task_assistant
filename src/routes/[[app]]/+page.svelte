@@ -8,7 +8,6 @@
 	// Import all components
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
 	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
-	import Flipcard from '$lib/components/dashboard/flipcard.svelte';
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
@@ -17,7 +16,6 @@
 
 	// Shared user data states
 	let notes = $derived(get_type_data(shared.all_data,"notes"))
-	let flipCards = $derived(get_type_data(shared.all_data,"flipcards"));
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
 	let todos = $derived(get_type_data(shared.all_data,"todos"));
 	let disp_todos = $derived(get_type_data(shared.all_data,"todos").slice(0,3));
@@ -83,13 +81,6 @@
 					name={note.Title}
 				 	details={note.Content} 
 					date={datemap(note.SetDate).fulldate}
-				/>
-			{/each}
-			{#each flipCards as flipCard}
-				<Flipcard
-					name={flipCard.Title}
-					details={flipCard.Content}
-					date={datemap(flipCard.SetDate).fulldate}
 				/>
 			{/each}
 			{#each memcards as memcard}
