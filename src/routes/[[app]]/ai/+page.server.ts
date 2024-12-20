@@ -25,12 +25,12 @@ async function ai(prompt: string | any){
                 Also perform commands only if users insist you to do so.
 
                 command>> Insert (Title: My Title, Content: This is the content for insert, Type: notes) <<command
-                command>> Edit (Title: My Edit Title, Content: Updated content, Type: flipcards) <<command
+                command>> Edit (Title: My Edit Title, Content: Updated content, Type: memories) <<command
                 command>> Read (Title: Read Title, Content: Content to read, Type: todos) <<command
                 
                 The syntax is: 
                 command>>  <<command  // You should always leave a line and space after this syntax
-                Infer it based on examples. Types can be notes, todos, flipcards and memories all having title
+                Infer it based on examples. Types can be notes, todos, and memories all having title
                 and a content. perform it when user asks for it. Anything you return apart from commands line will be provided as feedback to user.
 
                 DO NOT USE ANY MARKDOWN

@@ -4,7 +4,7 @@
 	import type { ActionData,PageData } from "./$types";
 	function parseText(input: any) {
 		if(!input){
-			return ({commands: "",
+			return ({commands: [],
 				otherText:"" })
 		}
 		const commandPattern =

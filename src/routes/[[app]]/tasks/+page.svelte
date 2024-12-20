@@ -3,13 +3,17 @@
 	import { Diff } from "lucide-svelte";
 	import { fade } from "svelte/transition";
 	import { shared } from "../shared.svelte";
+	import Unsched from "$lib/components/tasks/Unsched.svelte";
 
     let Difficulty = $state(0);
     let priority = $state(0);
     let fixed = $state(false);
+
+    let {data }= $props();
 </script>
 
 <div class="w-full h-screen bg-gray-100 flex z-0">
+    <div class="w-16"></div>
     <form class="text-2xl p-5 w-[20%]" method="POST" use:enhance>
         <input type="hidden" name="user_id" value="{shared.user_id}"/>
         Add Tasks
@@ -125,7 +129,14 @@
             <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300">Reschedule All</button>
         </div>
         <div class="h-[90%] flex">
-            <div class="text-2xl p-5 w-[25%] border-2 relative">Task Stack</div>
+            <div class="text-2xl p-5 w-[25%] border-2 flex flex-col justify-start overflow-y-auto">
+                <div class="font-bold">Task Stack</div>
+                {#each data.tasks as task}
+                    {#if !task.scheduled}
+                   <Unsched name={task.name} difficulty={task.difficulty} priority={task.priority}/>
+                   {/if}
+                {/each}
+            </div>
             <div class="text-2xl p-5 w-[25%] border-2">Today</div>
             <div class="text-2xl p-5 w-[25%] border-2">Tommorow</div>
             <div class="text-2xl p-5 w-[25%] border-2">Later</div>
