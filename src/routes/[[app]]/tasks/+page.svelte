@@ -4,12 +4,30 @@
 	import { fade } from "svelte/transition";
 	import { shared } from "../shared.svelte";
 	import Unsched from "$lib/components/tasks/Unsched.svelte";
+	import datemap from "$lib/date";
+	import Sched from "$lib/components/tasks/sched.svelte";
 
     let Difficulty = $state(0);
     let priority = $state(0);
     let fixed = $state(false);
 
     let {data }= $props();
+
+    let today = new Date();
+    let tomorrow = new Date(today.getDay()+1);
+
+    function isToday(date: any) {
+        let got_date = new Date(date);
+        return got_date.toDateString() === new Date().toDateString();
+    }
+
+    function isTomorrow(date: any) {
+        let got_date = new Date(date);
+        const today = new Date();
+        today.setDate(today.getDate() + 1);
+        return got_date.toDateString() === today.toDateString();
+    }
+
 </script>
 
 <div class="w-full h-screen bg-gray-100 flex z-0">
@@ -123,11 +141,12 @@
     </form>
     
     <div class="w-[80%] h-screen">
-        <div class="h-[10%] p-1 border-2">
-            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300">Schedule All</button>
-            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300">Randomize</button>
-            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300">Reschedule All</button>
-        </div>
+        <form class="h-[10%] p-1 border-2">
+            <input type="hidden" value={shared.user_id} name="user_id"/>
+            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300" formaction="?/sched">Schedule All</button>
+            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300" formaction="?/rand">Randomize</button>
+            <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300" formaction="?/sched">Reverse Schedule</button>
+        </form>
         <div class="h-[90%] flex">
             <div class="text-2xl p-5 w-[25%] border-2 flex flex-col justify-start overflow-y-auto">
                 <div class="font-bold">Task Stack</div>
@@ -137,9 +156,30 @@
                    {/if}
                 {/each}
             </div>
-            <div class="text-2xl p-5 w-[25%] border-2">Today</div>
-            <div class="text-2xl p-5 w-[25%] border-2">Tommorow</div>
-            <div class="text-2xl p-5 w-[25%] border-2">Later</div>
+            <div class="text-2xl p-5 w-[25%] border-2 flex flex-col justify-start overflow-y-auto">
+                <div class="font-bold">Today</div>
+                {#each data.tasks as task}
+                    {#if task.scheduled && (isToday(task.StartDate))}
+                   <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                   {/if}
+                {/each}
+            </div>
+            <div class="text-2xl p-5 w-[25%] border-2 flex flex-col justify-start overflow-y-auto">
+                <div class="font-bold">Tommorow</div>
+                {#each data.tasks as task}
+                    {#if task.scheduled && (isTomorrow(task.StartDate))}
+                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                   {/if}
+                {/each}
+            </div>
+            <div class="text-2xl p-5 w-[25%] border-2 flex flex-col justify-start overflow-y-auto">
+                <div class="font-bold">Later</div>
+                {#each data.tasks as task}
+                    {#if task.scheduled && (!isTomorrow(task.StartDate)) && (!isToday(task.StartDate))}
+                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                   {/if}
+                {/each}
+            </div>
         </div>
         
     </div>

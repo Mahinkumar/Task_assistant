@@ -40,12 +40,13 @@ export const tasks = pgTable('tasks',{
 	userId: text('user_id')
 		.notNull()
 		.references(() => user.id),
-	StartDate: timestamp('StartDate', { withTimezone: true, mode: 'string' }),
-	EndDate: timestamp('EndDate', { withTimezone: true, mode: 'string' }),
+	StartDate: timestamp('StartDate', { withTimezone: false, mode: 'string' }),
+	EndDate: timestamp('EndDate', { withTimezone: false, mode: 'string' }),
 	name: text('name'),
 	difficulty: integer('difficulty').default(0),
 	priority: integer('priority').default(0),
 	scheduled: boolean('scheduled').default(false),
+	is_completed: boolean('is_completed').default(false),
 	embedding: vector('embedding', { dimensions: 384 }),
 },
 (table) => ({
