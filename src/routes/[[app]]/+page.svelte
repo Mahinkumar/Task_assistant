@@ -11,9 +11,6 @@
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
-	
-	let Overview_mode = $state(false);
-
 	// Shared user data states
 	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
@@ -27,25 +24,9 @@
 			class="flex flex-col h-96 p-4 border-r-2 border-b-2 border-neutral-300 lg:w-[28rem] w-full"
 		>
 			<h1 class="text-2xl mb-4 flex items-center">
-				Today's Overview <div
-					class="ml-8 ring-2 ring-gray-200 w-36 h-10 items-center justify-evenly flex"
-				>
-					<button
-						class="w-16 h-8 transition-all text-xl {!Overview_mode ? 'bg-white' : 'bg-gray-300'}"
-						aria-label="AI overview"
-						onclick={() => {
-							Overview_mode = !Overview_mode;
-						}}>Ai</button
-					><button
-						class="w-16 h-8 transition-all text-xl {Overview_mode ? 'bg-white' : 'bg-gray-300'}"
-						aria-label="Brief"
-						onclick={() => {
-							Overview_mode = !Overview_mode;
-						}}>Brief</button
-					>
-				</div>
+				Today's Overview 
 			</h1>
-			{#if !Overview_mode && todos.length !== 0}
+			{#if todos.length !== 0}
 				<ul use:autoAnimate class="space-y-4 z-0">
 					{#each disp_todos as todo}
 						<Taskitem
@@ -56,19 +37,12 @@
 					{/each}
 					<!-- <button onclick={sync} class="w-64 h-32 bg-green-500">Sync</button> -->
 				</ul>
-			{:else if todos.length === 0 && !Overview_mode}<div
+			{:else}<div
 					class="text-lg flex justify-center items-center h-72 border-2 border-green-200 lg:w-[26rem] w-full"
 				>
 					You have completed all the <br /> tasks for the Day. Good Job!
 				</div>
-			{:else}
-				<div
-					class="text-2xl flex text-start justify-center items-center h-72 border-2 border-green-200 p-16 bg-gray-100 lg:w-[26rem] w-full"
-				>
-					✨ You've got a developer meeting at 11, lunch at the Emporium at 1, and exam prep at 3!
-				</div>
-
-			{/if}
+				{/if}
 		</div>
 		<!--First Row with Assist UI-->
 		<ChatClock />
