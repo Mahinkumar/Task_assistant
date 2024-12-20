@@ -4,6 +4,7 @@
 	import autoAnimate from '@formkit/auto-animate';
 	import { get_type_data, shared } from './shared.svelte';
 	import datemap from '$lib/date';
+	let { data } = $props();
 
 	// Import all components
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
@@ -12,6 +13,9 @@
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
 
 	// Shared user data states
+	shared.all_data = data.all_data;
+	
+
 	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
 	let todos = $derived(get_type_data(shared.all_data,"todos"));

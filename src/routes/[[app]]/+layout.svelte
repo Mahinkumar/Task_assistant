@@ -4,10 +4,8 @@
 	import SideNav from '$lib/components/nav/SideNav.svelte';
 	import Toast from '$lib/components/features/Toast.svelte'
 	import { shared } from './shared.svelte';
-	import type { Cookies } from '@sveltejs/kit';
 	
 	let { children, data } = $props();
-	shared.all_data = data.all_data;
 	shared.user_id = data.user.id;
 </script>
 

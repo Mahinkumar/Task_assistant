@@ -1,4 +1,4 @@
-import { pgTable, serial, text, integer, timestamp, boolean } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, timestamp, boolean, index, vector } from 'drizzle-orm/pg-core';
 
 export const user = pgTable('user', {
 	id: text('id').primaryKey(),
@@ -34,6 +34,27 @@ export const user_dat = pgTable('UserData', {
 	isCompleted: boolean('iscompleted').default(false),
 });
 
+
+export const tasks = pgTable('tasks',{
+	sno: serial('sno').primaryKey(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => user.id),
+	StartDate: timestamp('StartDate', { withTimezone: true, mode: 'string' }),
+	EndDate: timestamp('EndDate', { withTimezone: true, mode: 'string' }),
+	name: text('name'),
+	difficulty: integer('difficulty').default(0),
+	priority: integer('priority').default(0),
+	scheduled: boolean('scheduled').default(false),
+	embedding: vector('embedding', { dimensions: 384 }),
+},
+(table) => ({
+    embeddingIndex: index('embeddingIndex').using('hnsw', table.embedding.op('vector_cosine_ops')),
+}),)
+
 export type Session = typeof session.$inferSelect;
 
 export type User = typeof user.$inferSelect;
+
+
+export type Tasks = typeof tasks.$inferSelect;

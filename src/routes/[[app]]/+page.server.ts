@@ -18,20 +18,3 @@ type dataFrag = {
     difficulty: number | null;
     isCompleted: boolean | null;
 }
-
-
-
-export const actions: Actions = {
-    add: async (event: any) => {
-        
-    },
-    remove: async (event: any) => {
-    },
-
-    edit: async (event: any) =>{
-
-    },
-    delete: async (event: any) =>{
-
-    }
-};

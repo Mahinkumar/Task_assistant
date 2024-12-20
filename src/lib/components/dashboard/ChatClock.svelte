@@ -14,7 +14,7 @@
     <div class="w-full flex items-star justify-evenly h-full relative">
         {#if clockmode=="Ai-Brief"}
         <Typewriter>
-            <div use:cascade={{ unwriteInterval: 100 }} class="font-semibold text-4xl p-8 w-[64rem] text-center">
+            <div use:cascade={{ unwriteInterval: 100 }} class="font-semibold text-4xl p-8 w-[64rem] ml-[5%] text-left">
                 ✨ Hi there! How can I assist you today? Whether it's managing your schedule, setting reminders, or just getting things done - I'm here to help!
             </div>
         </Typewriter>
