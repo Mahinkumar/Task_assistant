@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
 	import { Check, Trash2 } from "lucide-svelte";
 
     let data = $props();
 </script>
 
-<form class="pt-2" method="post">
+<form class="pt-2" method="post" use:enhance>
     <div class=" h-full bg-slate-200 rounded-sm flex justify-center flex-col border-2 w-64 p-5 text-lg">
         <div class="">{data.hour_start} - {data.hour_end}</div>
         <div class="flex justify-between">

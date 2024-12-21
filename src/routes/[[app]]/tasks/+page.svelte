@@ -32,7 +32,7 @@
 
 <div class="w-full h-screen bg-gray-100 flex z-0">
     <div class="w-16"></div>
-    <form class="text-2xl p-5 w-[20%]" method="POST" use:enhance>
+    <form class="text-2xl p-5 w-[18%]" method="POST" use:enhance>
         <input type="hidden" name="user_id" value="{shared.user_id}"/>
         Add Tasks
         <h1 class="text-lg mt-4">Task Name</h1>
@@ -141,7 +141,7 @@
     </form>
     
     <div class="w-[80%] h-screen">
-        <form class="h-[10%] p-1 border-2">
+        <form class="h-[10%] p-1 border-2" method="post">
             <input type="hidden" value={shared.user_id} name="user_id"/>
             <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300" formaction="?/sched">Schedule All</button>
             <button class="w-[33%] mt-1 h-12 transition-all text-lg bg-gray-300" formaction="?/rand">Randomize</button>
@@ -160,7 +160,7 @@
                 <div class="font-bold">Today</div>
                 {#each data.tasks as task}
                     {#if task.scheduled && (isToday(task.StartDate))}
-                   <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                   <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hmx} hour_end={datemap(task.EndDate).hm}/>
                    {/if}
                 {/each}
             </div>
@@ -168,7 +168,7 @@
                 <div class="font-bold">Tommorow</div>
                 {#each data.tasks as task}
                     {#if task.scheduled && (isTomorrow(task.StartDate))}
-                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hmx} hour_end={datemap(task.EndDate).hm}/>
                    {/if}
                 {/each}
             </div>
@@ -176,7 +176,7 @@
                 <div class="font-bold">Later</div>
                 {#each data.tasks as task}
                     {#if task.scheduled && (!isTomorrow(task.StartDate)) && (!isToday(task.StartDate))}
-                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hm} hour_end={datemap(task.EndDate).hm}/>
+                    <Sched name={task.name} difficulty={task.difficulty} hour_start={datemap(task.StartDate).hmx} hour_end={datemap(task.EndDate).hm}/>
                    {/if}
                 {/each}
             </div>
