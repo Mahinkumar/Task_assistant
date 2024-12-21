@@ -8,7 +8,7 @@
 
     let { forms }: { forms: ActionData } = $props();
 
-    let clockmode = $state() 
+    let clockmode = $state("Ai-Brief") 
     let ai_text = $state(forms?.chatCompletion.choices[0].message.content||"Hello! I'm here to help you. Just let me know how I can assist you today.")
 
     
@@ -38,7 +38,7 @@
             <div class="w-[50%] text-2xl h-full flex flex-col justify-center items-start space-y-16">
                 <div class="font-semibold text-4xl">Start the Timer whenever you are ready.</div>
                 <div>
-                    <div class="flex"><h1 class="font-bold">Current Task: &nbsp; </h1> Meet With Developers</div>
+                    <div class="flex"><h1 class="font-bold">Current Task: &nbsp; </h1> Linux Kernel Development</div>
                     <div class="flex"><h1 class="font-bold">Next Task: &nbsp; </h1> Break - 5 Minutes</div>
                 </div>
             </div>
