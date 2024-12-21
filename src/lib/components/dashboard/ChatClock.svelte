@@ -5,7 +5,7 @@
 	import { fade } from 'svelte/transition';
     let data = $props();
 
-    let clockmode = $state("Work") 
+    let clockmode = $state("Ai-Brief") 
     let ai_text = $state(data.ai)
 </script>
 <div class="h-96 w-full flex flex-col items-center">
