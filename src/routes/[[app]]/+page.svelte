@@ -18,8 +18,8 @@
 
 	let notes = $derived(get_type_data(shared.all_data,"notes"))
 	let memcards = $derived(get_type_data(shared.all_data,"memcards"));
-	let todos = $derived(get_type_data(shared.all_data,"todos"));
-	let disp_todos = $derived(get_type_data(shared.all_data,"todos").slice(0,3));
+	let todos = data.tasks;
+	let disp_todos = data.tasks.slice(0,3);
 </script>
 
 <div class="flex flex-col grow">
@@ -34,9 +34,9 @@
 				<ul use:autoAnimate class="space-y-4 z-0">
 					{#each disp_todos as todo}
 						<Taskitem
-							time_start={datemap(todo.CreatedDate).hm}
+							time_start={datemap(todo.StartDate).hm}
 							time_end={datemap(todo.EndDate).hm}
-							Title={todo.Title}
+							Title={todo.name}
 						/>
 					{/each}
 					<!-- <button onclick={sync} class="w-64 h-32 bg-green-500">Sync</button> -->

@@ -3,7 +3,8 @@
 	import PomodoroClock from './PomodoroClock.svelte';
     import Typewriter, { cascade, concurrent, scramble } from 'svelte-typewriter'
 	import { fade } from 'svelte/transition';
-    let clockmode = $state("Ai-Brief") 
+    let clockmode = $state("work") 
+    let ai_text = $state("✨ Hi there! How can I assist you today? Whether it's managing your schedule, setting reminders, or just getting things done - I'm here to help!")
 </script>
 <div class="h-96 w-full flex flex-col items-center">
     <div class="w-48 h-8 border-2 border-gray-500 flex rounded-b-lg justify-center items-center">
@@ -15,7 +16,7 @@
         {#if clockmode=="Ai-Brief"}
         <Typewriter>
             <div use:cascade={{ unwriteInterval: 100 }} class="font-semibold text-4xl p-8 w-[64rem] ml-[5%] text-left">
-                ✨ Hi there! How can I assist you today? Whether it's managing your schedule, setting reminders, or just getting things done - I'm here to help!
+                {ai_text}
             </div>
         </Typewriter>
         <input type="text" class="ml-[5%] w-[90%] absolute bottom-10" />
