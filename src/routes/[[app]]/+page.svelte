@@ -49,7 +49,7 @@
 				{/if}
 		</div>
 		<!--First Row with Assist UI-->
-		<ChatClock />
+		<ChatClock ai={data.chatCompletion.choices[0].message.content} />
 	</div>
 	<div class="bg-violet-100 flex flex-col grow h-screen p-5">
 		<div class="text-2xl">Notes and Memories Board</div>

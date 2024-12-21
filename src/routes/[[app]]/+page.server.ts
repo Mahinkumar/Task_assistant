@@ -27,5 +27,22 @@ type dataFrag = {
 
 export const load = async (event) => {
     let tasks = await db.select({ userId: table.tasks.userId, name: table.tasks.name, scheduled: table.tasks.scheduled, StartDate: table.tasks.StartDate, EndDate: table.tasks.EndDate, difficulty: table.tasks.difficulty, priority: table.tasks.priority }).from(table.tasks);
-    return { tasks }
+    
+
+    const client = new HfInference(env.TEST_KEY);
+
+    const chatCompletion = await client.chatCompletion({
+        model:"microsoft/Phi-3.5-mini-instruct",
+        messages: [
+            {
+                role: "user",
+                content: `
+                INSTRUCTION: You are a bot named Task Assistant. You can summarize, guide and suggest to the user. Also answer from
+                the provided information. Now Welcome the user in short and simple manner
+                `
+            }
+        ],
+        max_tokens: 1024
+    });
+    return { chatCompletion ,tasks}
 };

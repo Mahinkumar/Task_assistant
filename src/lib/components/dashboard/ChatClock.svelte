@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { BookOpenText, BookText, Bot } from 'lucide-svelte';
+    import { BookOpenText, BookText, Bot, SendHorizontal } from 'lucide-svelte';
 	import PomodoroClock from './PomodoroClock.svelte';
     import Typewriter, { cascade, concurrent, scramble } from 'svelte-typewriter'
 	import { fade } from 'svelte/transition';
-    let clockmode = $state("work") 
-    let ai_text = $state("✨ Hi there! How can I assist you today? Whether it's managing your schedule, setting reminders, or just getting things done - I'm here to help!")
+    let data = $props();
+
+    let clockmode = $state("Work") 
+    let ai_text = $state(data.ai)
 </script>
 <div class="h-96 w-full flex flex-col items-center">
     <div class="w-48 h-8 border-2 border-gray-500 flex rounded-b-lg justify-center items-center">
@@ -19,7 +21,11 @@
                 {ai_text}
             </div>
         </Typewriter>
-        <input type="text" class="ml-[5%] w-[90%] absolute bottom-10" />
+        <div class="absolute bottom-10 rounded-md w-[90%] flex justify-center items-center border-2">  
+            <button class="w-[10%] flex items-center justify-center"><SendHorizontal /></button> 
+            <input type="text" class="w-[90%] h-full border-2"/>
+        </div>
+        
         {:else}
         <div class="h-full flex w-full items-center justify-evenly" in:fade>
             <PomodoroClock/>
