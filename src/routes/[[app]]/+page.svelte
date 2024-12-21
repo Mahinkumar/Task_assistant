@@ -4,13 +4,14 @@
 	import autoAnimate from '@formkit/auto-animate';
 	import { get_type_data, shared } from './shared.svelte';
 	import datemap from '$lib/date';
-	let { data } = $props();
+	let { data,forms  }:{data: any, forms: ActionData }  = $props();
 
 	// Import all components
 	import ChatClock from '$lib/components/dashboard/ChatClock.svelte';
 	import NotesMini from '$lib/components/dashboard/notes_mini.svelte';
 	import Memorycomp from '$lib/components/dashboard/memorycomp.svelte';
 	import Taskitem from '$lib/components/dashboard/Taskitem.svelte';
+	import type { ActionData } from './$types';
 
 	// Shared user data states
 	shared.all_data = data.all_data;
@@ -49,7 +50,7 @@
 				{/if}
 		</div>
 		<!--First Row with Assist UI-->
-		<ChatClock ai={data.chatCompletion.choices[0].message.content} />
+		<ChatClock forms={forms}/>
 	</div>
 	<div class="bg-violet-100 flex flex-col grow h-screen p-5">
 		<div class="text-2xl">Notes and Memories Board</div>

@@ -3,10 +3,16 @@
 	import PomodoroClock from './PomodoroClock.svelte';
     import Typewriter, { cascade, concurrent, scramble } from 'svelte-typewriter'
 	import { fade } from 'svelte/transition';
-    let data = $props();
+	import { enhance } from '$app/forms';
+	import { type PageData, type ActionData } from '../../../routes/[[app]]/$types';
 
-    let clockmode = $state("Ai-Brief") 
-    let ai_text = $state(data.ai)
+    let { forms }: { forms: ActionData } = $props();
+
+    let clockmode = $state() 
+    let ai_text = $state(forms?.chatCompletion.choices[0].message.content||"Hello! I'm here to help you. Just let me know how I can assist you today.")
+
+    
+
 </script>
 <div class="h-96 w-full flex flex-col items-center">
     <div class="w-48 h-8 border-2 border-gray-500 flex rounded-b-lg justify-center items-center">
@@ -14,7 +20,7 @@
         <button aria-label="Ai-Brief Mode" class="transition-all duratiion-700 h-8 w-10 hover:text-gray-800 flex items-center justify-center {clockmode == 'Ai-Brief' ? 'text-black' : 'text-gray-400'}" onclick={()=>clockmode='Ai-Brief'}><Bot /></button>
         <button aria-label="Switch Work/Rest Modes" class="transition-all duratiion-700 h-8 w-20 text-lg font-semibold" onclick={()=> clockmode = (clockmode == 'Ai-Brief' ? 'Work' : 'Ai-Brief')}>{clockmode}</button>
     </div>
-    <div class="w-full flex items-star justify-evenly h-full relative">
+    <form class="w-full flex items-star justify-evenly h-full relative" method="post" use:enhance>
         {#if clockmode=="Ai-Brief"}
         <Typewriter>
             <div use:cascade={{ unwriteInterval: 100 }} class="font-semibold text-4xl p-8 w-[64rem] ml-[5%] text-left">
@@ -22,8 +28,8 @@
             </div>
         </Typewriter>
         <div class="absolute bottom-10 rounded-md w-[90%] flex justify-center items-center border-2">  
-            <button class="w-[10%] flex items-center justify-center"><SendHorizontal /></button> 
-            <input type="text" class="w-[90%] h-full border-2"/>
+            <button class="w-[10%] flex items-center justify-center" formaction="?/get_ai"><SendHorizontal /></button> 
+            <input type="text" name="prompt" class="w-[90%] h-full border-2"/>
         </div>
         
         {:else}
@@ -39,5 +45,5 @@
         </div>
         {/if}
         
-    </div>
+    </form>
 </div>
